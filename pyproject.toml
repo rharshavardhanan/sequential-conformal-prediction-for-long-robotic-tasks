@@ -1,0 +1,70 @@
+[project]
+name = "project-1"
+version = "0.1.0"
+description = "Sequential conformal prediction for early failure detection in long-horizon manipulation"
+readme = "README.md"
+requires-python = ">=3.10,<3.11"
+dependencies = [
+    # --- the benchmark itself (path dep: clone lives in third_party/) ---
+    "libero",
+    # --- simulator core ---
+    "robosuite==1.4.1",
+    "mujoco>=3.1,<3.3",
+    "bddl==1.0.1",
+    # <2: robosuite 1.4 predates the numpy 2 ABI break.
+    # <1.24: robomimic 0.2.0 uses np.bool, removed in 1.24. Pinning beats
+    # patching site-packages -- it survives `uv sync` and applies inside
+    # DataLoader workers. Matches LIBERO's own original numpy==1.22.4.
+    "numpy>=1.22,<1.24",
+    # --- imported by libero/libero (env + benchmark only) ---
+    "easydict",
+    "pyyaml",
+    "termcolor",
+    "tqdm",
+    "imageio",
+    "h5py",
+    "cloudpickle",
+    "matplotlib",
+    "huggingface-hub",
+    # --- policy side: CPU/MPS wheels, not the cu113 line from LIBERO's README ---
+    "torch",
+    "torchvision",
+    "future>=1.0.0",
+    "gym==0.26.2",
+]
+
+# LIBERO's setup.py declares install_requires=[], so installing it editable pulls
+# nothing extra. The list above is that missing manifest, minus the `lifelong`
+# training stack (wandb / robomimic / transformers / thop) which rollout
+# collection never imports.
+
+[dependency-groups]
+# Only needed to TRAIN the policy. Rollout collection does not import any of it:
+#   uv sync --group train
+train = [
+    "robomimic==0.2.0",
+    "six",           # robomimic.config imports it, but doesn't declare it
+    "psutil",
+    "tensorboardx",
+    "imageio-ffmpeg",
+    "transformers",  # bert-base-cased task embeddings
+    "einops",
+    "hydra-core",
+    "thop",
+    "wandb",         # main.py imports at module scope even when use_wandb=false
+]
+
+[tool.uv]
+package = false
+
+# robomimic depends on egl-probe, which cmake-fails on Apple Silicon: EGL does
+# not exist on macOS. Nothing on a Mac calls it (it only selects a GPU for Linux
+# headless rendering), so confine it to Linux -- where it builds fine and is
+# actually used. This keeps one manifest working on both boxes.
+override-dependencies = ["egl-probe ; sys_platform == 'linux'"]
+
+[tool.uv.sources]
+# Editable so bddl_files/ + assets/ resolve from the checkout in place.
+# Bootstrap on a fresh machine:
+#   git clone --depth 1 https://github.com/Lifelong-Robot-Learning/LIBERO.git third_party/LIBERO
+libero = { path = "third_party/LIBERO", editable = true }

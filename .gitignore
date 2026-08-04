@@ -1,0 +1,30 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+.DS_Store
+.env
+
+# upstream clone, recreated by scripts/bootstrap.sh (carries its own .git)
+third_party/
+
+# collection output
+data/
+rollouts/
+
+experiments/
+eval_result.json
+bert/
+logs/
+dataset_preview/
+summaries/
+checkpoints.json
+.venv-lerobot/
+pretrained_dp_result.json
