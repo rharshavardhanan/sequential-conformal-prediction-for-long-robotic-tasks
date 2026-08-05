@@ -28,3 +28,4 @@ summaries/
 checkpoints.json
 .venv-lerobot/
 pretrained_dp_result.json
+pretrained_dp_task*.json
