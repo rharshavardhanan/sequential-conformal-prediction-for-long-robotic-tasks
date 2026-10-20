@@ -1,0 +1,60 @@
+{
+  "gate": "Gate 5: cheap composed success in [0.50, 0.75]",
+  "selection_rule": "smallest network landing in band (fixed before the sweep)",
+  "eval": "seeds 400,000-400,199, deterministic, closed loop",
+  "sweep": [
+    {
+      "file": "cheap_policy.json",
+      "arch": "26 -> 64 -> 64 -> 3, ReLU, tanh output",
+      "n_params_actor": 6083,
+      "val_mse": 0.14337103068828583,
+      "composed_success": 0.795,
+      "ci95": [
+        0.7337418048192546,
+        0.8451390516889363
+      ],
+      "reach_success": 1.0,
+      "push_given_reach": 0.795,
+      "mean_ep_len": 18.245,
+      "frac_cube_fell": 0.075,
+      "inference_ms_cpu": 0.024374996428377926,
+      "in_band": false
+    },
+    {
+      "file": "cheap_policy_32x32.json",
+      "arch": "26 -> 32 -> 32 -> 3, ReLU, tanh output",
+      "n_params_actor": 2019,
+      "val_mse": 0.1592201143503189,
+      "composed_success": 0.785,
+      "ci95": [
+        0.7229757022632792,
+        0.836282074363278
+      ],
+      "reach_success": 0.995,
+      "push_given_reach": 0.7889447236180904,
+      "mean_ep_len": 18.82,
+      "frac_cube_fell": 0.055,
+      "inference_ms_cpu": 0.0228749995585531,
+      "in_band": false
+    },
+    {
+      "file": "cheap_policy_16x16.json",
+      "arch": "26 -> 16 -> 16 -> 3, ReLU, tanh output",
+      "n_params_actor": 755,
+      "val_mse": 0.18243148922920227,
+      "composed_success": 0.68,
+      "ci95": [
+        0.612479733946457,
+        0.7407357039229475
+      ],
+      "reach_success": 0.995,
+      "push_given_reach": 0.6834170854271356,
+      "mean_ep_len": 22.835,
+      "frac_cube_fell": 0.085,
+      "inference_ms_cpu": 0.02183300966862589,
+      "in_band": true
+    }
+  ],
+  "chosen": "cheap_policy_16x16.json",
+  "action_taken": "initial [64,64] measured 0.795 (TOO STRONG); shrank capacity per Gate 5"
+}

@@ -1,0 +1,19 @@
+{
+  "checkpoint": "results/mujoco_train/push_expert/seed0/best_model.zip",
+  "expert": "pservo_reach + tqc_push",
+  "reach_stage": "scripted P-servo (NOT a learned reach expert)",
+  "episodes_run": 4695,
+  "episodes_kept_successful": 4226,
+  "episode_success_rate_on_train_seeds": 0.9001064962726305,
+  "transitions": 50006,
+  "transitions_reach": 18944,
+  "transitions_push": 31062,
+  "reach_fraction": 0.37883453985521737,
+  "train_seed_range": [
+    0,
+    100000
+  ],
+  "seconds": 34.87730945899966,
+  "obs_dim": 26,
+  "act_dim": 3
+}

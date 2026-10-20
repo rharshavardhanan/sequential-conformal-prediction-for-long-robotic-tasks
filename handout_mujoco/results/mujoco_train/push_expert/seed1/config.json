@@ -1,0 +1,37 @@
+{
+  "algo": "TQC",
+  "replay_buffer": "HerReplayBuffer",
+  "her": {
+    "n_sampled_goal": 4,
+    "goal_selection_strategy": "future"
+  },
+  "hyperparams": {
+    "learning_rate": 0.001,
+    "buffer_size": 1000000,
+    "batch_size": 2048,
+    "gamma": 0.95,
+    "tau": 0.05,
+    "learning_starts": 1000,
+    "policy_kwargs": {
+      "net_arch": [
+        512,
+        512,
+        512
+      ],
+      "use_sde": false
+    }
+  },
+  "train_freq": "TrainFreq(frequency=1, unit=<TrainFrequencyUnit.STEP: 'step'>)",
+  "gradient_steps": 1,
+  "top_quantiles_to_drop_per_net": 2,
+  "device": "mps",
+  "seed": 1,
+  "use_vecnormalize": false,
+  "env": "live/envs.py:PushOnly",
+  "train_seed_range": [
+    0,
+    100000
+  ],
+  "eval_seed_base": 400000,
+  "torch": "2.10.0"
+}

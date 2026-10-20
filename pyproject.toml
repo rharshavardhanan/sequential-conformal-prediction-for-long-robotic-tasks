@@ -34,34 +34,20 @@ dependencies = [
 ]
 
 # LIBERO's setup.py declares install_requires=[], so installing it editable pulls
-# nothing extra. The list above is that missing manifest, minus the `lifelong`
-# training stack (wandb / robomimic / transformers / thop) which rollout
-# collection never imports.
-
-[dependency-groups]
-# Only needed to TRAIN the policy. Rollout collection does not import any of it:
-#   uv sync --group train
-train = [
-    "robomimic==0.2.0",
-    "six",           # robomimic.config imports it, but doesn't declare it
-    "psutil",
-    "tensorboardx",
-    "imageio-ffmpeg",
-    "transformers",  # bert-base-cased task embeddings
-    "einops",
-    "hydra-core",
-    "thop",
-    "wandb",         # main.py imports at module scope even when use_wandb=false
-]
+# nothing extra. The list above is that missing manifest.
+#
+# The `lifelong` training stack (robomimic / wandb / transformers / hydra / thop)
+# was removed on 2026-09-08 along with the BC-Transformer scripts that imported
+# it -- the policy is now a frozen pretrained checkpoint, not something we train.
+# It is recoverable from git history if training ever returns.
+#
+# NOTE: `numpy<1.24` above was originally pinned for robomimic's use of np.bool.
+# robomimic is gone, so only the `<2` half (robosuite 1.4's ABI) is still load-
+# bearing. The tighter pin is kept deliberately: relaxing it would re-resolve the
+# env that produced the recorded numbers. Loosen it only with a fresh eval.
 
 [tool.uv]
 package = false
-
-# robomimic depends on egl-probe, which cmake-fails on Apple Silicon: EGL does
-# not exist on macOS. Nothing on a Mac calls it (it only selects a GPU for Linux
-# headless rendering), so confine it to Linux -- where it builds fine and is
-# actually used. This keeps one manifest working on both boxes.
-override-dependencies = ["egl-probe ; sys_platform == 'linux'"]
 
 [tool.uv.sources]
 # Editable so bddl_files/ + assets/ resolve from the checkout in place.

@@ -1,0 +1,15 @@
+{
+  "question": "Can push seeds 1-2 and the reach expert share one MPS device?",
+  "rule": "continue with all three if push fps >= 25; otherwise kill reach and run it after",
+  "baseline_push_alone_fps": 38.0,
+  "measured": {
+    "push_seed1_3way": 18.0,
+    "push_seed2_3way": 18.0,
+    "reach_seed0_3way": 17.1,
+    "note": "push numbers are the first 20k-step eval interval (1,000 pre-gradient steps included, ~0.3 s of ~1,100 s, negligible). reach number is from a 3,000-step smoke run measured over 2 post-learning_starts intervals."
+  },
+  "aggregate_3way_throughput": 53.1,
+  "decision": "KILL reach. push at 18.0 < 25.",
+  "contention_penalty": "push drops 38.0 -> 18.0 steps/s, a 2.11x slowdown per job for 3 concurrent jobs. Aggregate 53.1 steps/s vs 38.0 for one job = 1.40x total throughput, so concurrency buys 40% aggregate at the cost of each job taking 2.1x longer. For a gate that needs BOTH push seeds before it can be reported, wall-clock to that gate is what matters, and 3-way makes it worse.",
+  "consequence": "reach seed0 runs after the push seeds finish."
+}

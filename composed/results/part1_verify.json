@@ -1,0 +1,201 @@
+{
+  "bar": 0.8,
+  "n": 50,
+  "candidates": {
+    "chencliu/tqc-PandaReach-v3": {
+      "success": 50,
+      "n": 50,
+      "success_rate": 1.0,
+      "wilson95": [
+        0.9286523998213857,
+        0.9999999999999999
+      ],
+      "max_episode_steps": 50,
+      "steps_to_success_mean": 2.84,
+      "steps_to_success_median": 3.0,
+      "steps_to_success_p90": 4.0,
+      "steps_to_success_max": 4,
+      "task": "PandaReach-v3",
+      "algo": "tqc",
+      "actor_params": 5382,
+      "zip": "tqc-PandaReach-v3.zip",
+      "vec_normalize": true,
+      "passes_bar": true
+    },
+    "ThomasSimonini/a2c-PandaReachDense-v3": {
+      "success": 50,
+      "n": 50,
+      "success_rate": 1.0,
+      "wilson95": [
+        0.9286523998213857,
+        0.9999999999999999
+      ],
+      "max_episode_steps": 50,
+      "steps_to_success_mean": 2.86,
+      "steps_to_success_median": 3.0,
+      "steps_to_success_p90": 4.0,
+      "steps_to_success_max": 5,
+      "task": "PandaReach-v3",
+      "algo": "a2c",
+      "actor_params": 10247,
+      "zip": "a2c-PandaReachDense-v3.zip",
+      "vec_normalize": true,
+      "passes_bar": true
+    },
+    "sagarsdesai/a2c-PandaReachDense-v3": {
+      "success": 50,
+      "n": 50,
+      "success_rate": 1.0,
+      "wilson95": [
+        0.9286523998213857,
+        0.9999999999999999
+      ],
+      "max_episode_steps": 50,
+      "steps_to_success_mean": 2.8,
+      "steps_to_success_median": 3.0,
+      "steps_to_success_p90": 4.0,
+      "steps_to_success_max": 4,
+      "task": "PandaReach-v3",
+      "algo": "a2c",
+      "actor_params": 10247,
+      "zip": "a2c-PandaReachDense-v3.zip",
+      "vec_normalize": true,
+      "passes_bar": true
+    },
+    "enaitzb/TQC-PandaPush-v3": {
+      "success": 38,
+      "n": 50,
+      "success_rate": 0.76,
+      "wilson95": [
+        0.6258731612803865,
+        0.8570260866267341
+      ],
+      "max_episode_steps": 50,
+      "steps_to_success_mean": 11.68421052631579,
+      "steps_to_success_median": 9.5,
+      "steps_to_success_p90": 21.300000000000004,
+      "steps_to_success_max": 35,
+      "task": "PandaPush-v3",
+      "algo": "tqc",
+      "actor_params": 541190,
+      "zip": "TQC-PandaPush-v3.zip",
+      "vec_normalize": true,
+      "passes_bar": false
+    },
+    "enaitzb/TQC_no_envs-PandaPush-v3": {
+      "success": 2,
+      "n": 50,
+      "success_rate": 0.04,
+      "wilson95": [
+        0.011038884228173514,
+        0.13460090793615148
+      ],
+      "max_episode_steps": 50,
+      "steps_to_success_mean": 1.0,
+      "steps_to_success_median": 1.0,
+      "steps_to_success_p90": 1.0,
+      "steps_to_success_max": 1,
+      "task": "PandaPush-v3",
+      "algo": "tqc",
+      "actor_params": 541190,
+      "zip": "TQC-PandaPush-v3.zip",
+      "vec_normalize": true,
+      "passes_bar": false
+    },
+    "Mriganka1999/PandaPushDense-v3usingSAC-PandaPushDense-v3": {
+      "success": 2,
+      "n": 50,
+      "success_rate": 0.04,
+      "wilson95": [
+        0.011038884228173514,
+        0.13460090793615148
+      ],
+      "max_episode_steps": 50,
+      "steps_to_success_mean": 1.0,
+      "steps_to_success_median": 1.0,
+      "steps_to_success_p90": 1.0,
+      "steps_to_success_max": 1,
+      "task": "PandaPush-v3",
+      "algo": "sac",
+      "actor_params": 73734,
+      "zip": "sac-PandaPushDense-v3.zip",
+      "vec_normalize": true,
+      "passes_bar": false
+    },
+    "Mriganka1999/PandaPushDense-v3usingTD3-PandaPushDense-v3": {
+      "success": 2,
+      "n": 50,
+      "success_rate": 0.04,
+      "wilson95": [
+        0.011038884228173514,
+        0.13460090793615148
+      ],
+      "max_episode_steps": 50,
+      "steps_to_success_mean": 1.0,
+      "steps_to_success_median": 1.0,
+      "steps_to_success_p90": 1.0,
+      "steps_to_success_max": 1,
+      "task": "PandaPush-v3",
+      "algo": "td3",
+      "actor_params": 131203,
+      "zip": "td3-PandaPushDense-v3.zip",
+      "vec_normalize": true,
+      "passes_bar": false
+    },
+    "chencliu/tqc-PandaSlide-v3": {
+      "success": 48,
+      "n": 50,
+      "success_rate": 0.96,
+      "wilson95": [
+        0.8653990920638485,
+        0.9889611157718264
+      ],
+      "max_episode_steps": 50,
+      "steps_to_success_mean": 11.479166666666666,
+      "steps_to_success_median": 12.0,
+      "steps_to_success_p90": 14.0,
+      "steps_to_success_max": 16,
+      "task": "PandaSlide-v3",
+      "algo": "tqc",
+      "actor_params": 541190,
+      "zip": "tqc-PandaSlide-v3.zip",
+      "vec_normalize": true,
+      "passes_bar": true
+    },
+    "enaitzb/TQC-PandaPush-v3#no_load_env": {
+      "success": 38,
+      "n": 50,
+      "success_rate": 0.76,
+      "wilson95": [
+        0.6258731612803865,
+        0.8570260866267341
+      ],
+      "max_episode_steps": 50,
+      "steps_to_success_mean": 11.68421052631579,
+      "steps_to_success_median": 9.5,
+      "steps_to_success_p90": 21.300000000000004,
+      "steps_to_success_max": 35,
+      "task": "PandaPush-v3",
+      "algo": "tqc",
+      "actor_params": 541190,
+      "zip": "TQC_no_load_env-PandaPush-v3.zip",
+      "vec_normalize": true,
+      "passes_bar": false
+    }
+  },
+  "recheck_enaitzb_TQC-PandaPush-v3_n200": {
+    "success": 143,
+    "n": 200,
+    "success_rate": 0.715,
+    "wilson95": [
+      0.6488465391585687,
+      0.7730499703737772
+    ],
+    "max_episode_steps": 50,
+    "steps_to_success_mean": 10.902097902097902,
+    "steps_to_success_median": 9.0,
+    "steps_to_success_p90": 20.0,
+    "steps_to_success_max": 42,
+    "passes_bar": false
+  }
+}

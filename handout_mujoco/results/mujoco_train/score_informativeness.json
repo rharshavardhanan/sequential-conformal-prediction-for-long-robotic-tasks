@@ -1,0 +1,489 @@
+{
+  "cheap_policy": "cheap_policy_16x16.pt (755 actor params)",
+  "calibration_seeds": [
+    300000,
+    300999
+  ],
+  "screening_seeds": [
+    300000,
+    300499
+  ],
+  "heldout_seeds": [
+    300500,
+    300999
+  ],
+  "n_episodes": 1000,
+  "overall_failure_rate": 0.315,
+  "reach_success_rate": 0.997,
+  "candidates": {
+    "a_compliance_residual": {
+      "definition": "||cmd_disp - achieved_disp|| / ||cmd_disp||, motion-floor masked",
+      "causality": "Causal: both terms are known one step after the command is issued. Deployable: needs only the commanded action and the measured EE displacement."
+    },
+    "b_ensemble_disagreement": {
+      "definition": "mean over action dims of the std across a 3-member cheap-MLP ensemble",
+      "causality": "Causal: computed from the observation alone, before the action is taken. Deployable: 3 forward passes of a 755-parameter net, 0.02 ms each."
+    },
+    "c_predicted_action_std": {
+      "definition": "mean predicted per-dimension std from a heteroscedastic (Gaussian-head) cheap policy",
+      "causality": "Causal: a property of the current observation, available before acting. Deployable: one forward pass, no ensemble."
+    },
+    "d_hand_to_cube_distance": {
+      "definition": "||ee - cube||",
+      "causality": "Causal: a measured geometric quantity at the current step. Deployable trivially. Meaningful in PUSH only -- in REACH the arm is not supposed to be at the cube."
+    }
+  },
+  "excluded_circular": {
+    "episode_length": "a failed push runs to the 50-step budget by definition",
+    "final_d_push": "the success test is a threshold on this exact quantity",
+    "success_flag": "the label itself",
+    "cube_fell": "a terminal condition, known only after it happens"
+  },
+  "gate": "selected score must reach AUC >= 0.65 within the first 8 steps of the phase where escalation actually fires",
+  "reach_screening": {
+    "n_episodes": 500,
+    "auc": {
+      "a_compliance_residual": {
+        "2": {
+          "auc": 0.5297589405927812,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "4": {
+          "auc": 0.5297589405927812,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "8": {
+          "auc": 0.570206016341135,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "all": {
+          "auc": 0.570206016341135,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        }
+      },
+      "b_ensemble_disagreement": {
+        "2": {
+          "auc": 0.3768051789962928,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "4": {
+          "auc": 0.415297220531548,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "8": {
+          "auc": 0.6384846640476586,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "all": {
+          "auc": 0.6384846640476586,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        }
+      },
+      "c_predicted_action_std": {
+        "2": {
+          "auc": 0.37744148730149946,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "4": {
+          "auc": 0.3516479462918903,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "8": {
+          "auc": 0.5142662166399232,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "all": {
+          "auc": 0.5142662166399232,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        }
+      },
+      "d_hand_to_cube_distance": {
+        "2": {
+          "auc": 0.6442391043730058,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "4": {
+          "auc": 0.6442391043730058,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "8": {
+          "auc": 0.6442391043730058,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "all": {
+          "auc": 0.6442391043730058,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        }
+      }
+    }
+  },
+  "reach_heldout": {
+    "n_episodes": 500,
+    "auc": {
+      "a_compliance_residual": {
+        "2": {
+          "auc": 0.5334115980918307,
+          "n_failed": 156,
+          "n_succeeded": 344,
+          "n_defined": 500
+        },
+        "4": {
+          "auc": 0.5334115980918307,
+          "n_failed": 156,
+          "n_succeeded": 344,
+          "n_defined": 500
+        },
+        "8": {
+          "auc": 0.5536299940369708,
+          "n_failed": 156,
+          "n_succeeded": 344,
+          "n_defined": 500
+        },
+        "all": {
+          "auc": 0.5551580202742994,
+          "n_failed": 156,
+          "n_succeeded": 344,
+          "n_defined": 500
+        }
+      },
+      "b_ensemble_disagreement": {
+        "2": {
+          "auc": 0.4233378056052475,
+          "n_failed": 156,
+          "n_succeeded": 344,
+          "n_defined": 500
+        },
+        "4": {
+          "auc": 0.4666815742397138,
+          "n_failed": 156,
+          "n_succeeded": 344,
+          "n_defined": 500
+        },
+        "8": {
+          "auc": 0.6318947525342874,
+          "n_failed": 156,
+          "n_succeeded": 344,
+          "n_defined": 500
+        },
+        "all": {
+          "auc": 0.6323792486583184,
+          "n_failed": 156,
+          "n_succeeded": 344,
+          "n_defined": 500
+        }
+      },
+      "c_predicted_action_std": {
+        "2": {
+          "auc": 0.3999049642218247,
+          "n_failed": 156,
+          "n_succeeded": 344,
+          "n_defined": 500
+        },
+        "4": {
+          "auc": 0.38111210494931425,
+          "n_failed": 156,
+          "n_succeeded": 344,
+          "n_defined": 500
+        },
+        "8": {
+          "auc": 0.5225290697674418,
+          "n_failed": 156,
+          "n_succeeded": 344,
+          "n_defined": 500
+        },
+        "all": {
+          "auc": 0.5225290697674418,
+          "n_failed": 156,
+          "n_succeeded": 344,
+          "n_defined": 500
+        }
+      },
+      "d_hand_to_cube_distance": {
+        "2": {
+          "auc": 0.6209004174120453,
+          "n_failed": 156,
+          "n_succeeded": 344,
+          "n_defined": 500
+        },
+        "4": {
+          "auc": 0.6209004174120453,
+          "n_failed": 156,
+          "n_succeeded": 344,
+          "n_defined": 500
+        },
+        "8": {
+          "auc": 0.6209004174120453,
+          "n_failed": 156,
+          "n_succeeded": 344,
+          "n_defined": 500
+        },
+        "all": {
+          "auc": 0.6228011329755516,
+          "n_failed": 156,
+          "n_succeeded": 344,
+          "n_defined": 500
+        }
+      }
+    }
+  },
+  "push_screening": {
+    "n_episodes": 500,
+    "auc": {
+      "a_compliance_residual": {
+        "2": {
+          "auc": 0.6566148398163005,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "4": {
+          "auc": 0.610284217709659,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "8": {
+          "auc": 0.6364558549585938,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "all": {
+          "auc": 0.9270366476696361,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        }
+      },
+      "b_ensemble_disagreement": {
+        "2": {
+          "auc": 0.6377100278500156,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "4": {
+          "auc": 0.6984451944890168,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "8": {
+          "auc": 0.7942787583688375,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "all": {
+          "auc": 0.9291761190726499,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        }
+      },
+      "c_predicted_action_std": {
+        "2": {
+          "auc": 0.5597299839539644,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "4": {
+          "auc": 0.5268448329921245,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "8": {
+          "auc": 0.6660395802209558,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "all": {
+          "auc": 0.8637562478098084,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        }
+      },
+      "d_hand_to_cube_distance": {
+        "2": {
+          "auc": 0.603312491930873,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "4": {
+          "auc": 0.5676792268392998,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "8": {
+          "auc": 0.5921724856600085,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        },
+        "all": {
+          "auc": 0.8075582360427157,
+          "n_failed": 159,
+          "n_succeeded": 341,
+          "n_defined": 500
+        }
+      }
+    }
+  },
+  "push_heldout": {
+    "n_episodes": 497,
+    "auc": {
+      "a_compliance_residual": {
+        "2": {
+          "auc": 0.6582117343061256,
+          "n_failed": 153,
+          "n_succeeded": 344,
+          "n_defined": 497
+        },
+        "4": {
+          "auc": 0.601953184374525,
+          "n_failed": 153,
+          "n_succeeded": 344,
+          "n_defined": 497
+        },
+        "8": {
+          "auc": 0.6099331205350357,
+          "n_failed": 153,
+          "n_succeeded": 344,
+          "n_defined": 497
+        },
+        "all": {
+          "auc": 0.8978188174494603,
+          "n_failed": 153,
+          "n_succeeded": 344,
+          "n_defined": 497
+        }
+      },
+      "b_ensemble_disagreement": {
+        "2": {
+          "auc": 0.6275269797841617,
+          "n_failed": 153,
+          "n_succeeded": 344,
+          "n_defined": 497
+        },
+        "4": {
+          "auc": 0.7011133910928713,
+          "n_failed": 153,
+          "n_succeeded": 344,
+          "n_defined": 497
+        },
+        "8": {
+          "auc": 0.8130414956680346,
+          "n_failed": 153,
+          "n_succeeded": 344,
+          "n_defined": 497
+        },
+        "all": {
+          "auc": 0.9236016111871105,
+          "n_failed": 153,
+          "n_succeeded": 344,
+          "n_defined": 497
+        }
+      },
+      "c_predicted_action_std": {
+        "2": {
+          "auc": 0.5801223590211279,
+          "n_failed": 153,
+          "n_succeeded": 344,
+          "n_defined": 497
+        },
+        "4": {
+          "auc": 0.567126462988296,
+          "n_failed": 153,
+          "n_succeeded": 344,
+          "n_defined": 497
+        },
+        "8": {
+          "auc": 0.6681296549627603,
+          "n_failed": 153,
+          "n_succeeded": 344,
+          "n_defined": 497
+        },
+        "all": {
+          "auc": 0.8525611795105639,
+          "n_failed": 153,
+          "n_succeeded": 344,
+          "n_defined": 497
+        }
+      },
+      "d_hand_to_cube_distance": {
+        "2": {
+          "auc": 0.5742894056847545,
+          "n_failed": 153,
+          "n_succeeded": 344,
+          "n_defined": 497
+        },
+        "4": {
+          "auc": 0.5429586563307494,
+          "n_failed": 153,
+          "n_succeeded": 344,
+          "n_defined": 497
+        },
+        "8": {
+          "auc": 0.5745554035567716,
+          "n_failed": 153,
+          "n_succeeded": 344,
+          "n_defined": 497
+        },
+        "all": {
+          "auc": 0.8016985864113088,
+          "n_failed": 153,
+          "n_succeeded": 344,
+          "n_defined": 497
+        }
+      }
+    }
+  },
+  "failures_by_phase_screening": {
+    "reach_phase_episodes_failed": 159,
+    "push_phase_episodes_failed": 159
+  },
+  "selected_on_screening": {
+    "candidate": "b_ensemble_disagreement",
+    "push_auc_at_8": 0.7942787583688375
+  },
+  "selected_heldout_push_auc_at_8": 0.8130414956680346,
+  "gate_passed": true
+}

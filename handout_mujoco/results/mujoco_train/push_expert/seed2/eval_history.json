@@ -1,0 +1,68 @@
+[
+  {
+    "label": "step20000",
+    "n_episodes": 100,
+    "success": 0.5,
+    "success_ci95": [
+      0.402,
+      0.598
+    ],
+    "mean_episode_len": 27.71,
+    "median_episode_len": 33.5,
+    "frac_cube_fell": 0.0,
+    "mean_final_d_push": 0.09994962272049332,
+    "inference_ms_median": 1.4191250011208467,
+    "n_params_actor": 541190,
+    "total_params": 2751082,
+    "timesteps": 20000,
+    "fps_interval": 17.981466474189716,
+    "after_learning_starts": false,
+    "actor_loss": 1.658003330230713,
+    "critic_loss": 0.02284853532910347,
+    "ent_coef": 0.006701464299112558
+  },
+  {
+    "label": "step40000",
+    "n_episodes": 100,
+    "success": 0.58,
+    "success_ci95": [
+      0.4832625325946559,
+      0.676737467405344
+    ],
+    "mean_episode_len": 22.39,
+    "median_episode_len": 8.0,
+    "frac_cube_fell": 0.06,
+    "mean_final_d_push": 0.11199039836229308,
+    "inference_ms_median": 1.4588749982067384,
+    "n_params_actor": 541190,
+    "total_params": 2751082,
+    "timesteps": 40000,
+    "fps_interval": 23.8935465777688,
+    "after_learning_starts": true,
+    "actor_loss": 2.220701217651367,
+    "critic_loss": 0.024560613557696342,
+    "ent_coef": 0.004162474535405636
+  },
+  {
+    "label": "step60000",
+    "n_episodes": 100,
+    "success": 0.59,
+    "success_ci95": [
+      0.4936006722015137,
+      0.6863993277984862
+    ],
+    "mean_episode_len": 21.94,
+    "median_episode_len": 7.0,
+    "frac_cube_fell": 0.07,
+    "mean_final_d_push": 0.11051763479417867,
+    "inference_ms_median": 1.3957084956928156,
+    "n_params_actor": 541190,
+    "total_params": 2751082,
+    "timesteps": 60000,
+    "fps_interval": 24.957534604065277,
+    "after_learning_starts": true,
+    "actor_loss": 2.3709683418273926,
+    "critic_loss": 0.03479184955358505,
+    "ent_coef": 0.003996893763542175
+  }
+]

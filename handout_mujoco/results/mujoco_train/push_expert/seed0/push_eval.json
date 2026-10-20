@@ -1,0 +1,20 @@
+{
+  "label": "seed0_final",
+  "n_episodes": 200,
+  "success": 0.93,
+  "success_ci95": [
+    0.8946384276367694,
+    0.9653615723632307
+  ],
+  "mean_episode_len": 8.315,
+  "median_episode_len": 5.0,
+  "frac_cube_fell": 0.035,
+  "mean_final_d_push": 0.05668577482783431,
+  "inference_ms_median": 1.3387920043896884,
+  "total_timesteps": 300000,
+  "wall_clock_s": 7990.942839249998,
+  "overall_fps": 37.542503561213934,
+  "steady_fps_median": 37.97264933744404,
+  "n_params_actor": 541190,
+  "total_params": 2751082
+}

@@ -1,0 +1,144 @@
+{
+  "separation_raw_uniform": {
+    "n": 20000,
+    "min": 0.0014927737091774184,
+    "mean": 0.1563763727774434,
+    "max": 0.4075353182021753,
+    "frac_born_successful": 0.07695,
+    "frac_below_0.01": 0.00325
+  },
+  "waypoint": {
+    "n": 400,
+    "frac_outside_sample_box": 0.6225,
+    "max_abs_x": 0.22900413895732008,
+    "max_abs_y": 0.22877289695480402,
+    "ik_residual_median": 7.113185793143799e-05,
+    "ik_residual_max": 9.981652102179681e-05,
+    "frac_unreachable": 0.0
+  },
+  "p_servo": {
+    "n": 1000,
+    "reach_success": 1.0,
+    "steps_median": 4.0,
+    "steps_p95": 6.0,
+    "steps_max": 7,
+    "arrival_dz_median": 0.017223784076800745,
+    "arrival_dz_max": 0.03267313265348143,
+    "frac_arrival_dz_above_0.04": 0.0,
+    "disturbance": {
+      "frac_moved_above_1mm": 0.317,
+      "frac_moved_above_1cm": 0.25,
+      "magnitude_max": 0.07648680557831326,
+      "magnitude_median_when_moved": 0.020340307047381188,
+      "along": {
+        "mean": 0.005971588393503069,
+        "sd": 0.011945384177380445,
+        "p5": 0.0,
+        "p95": 0.03268742449582007
+      },
+      "lateral": {
+        "mean": -3.8637937795998913e-05,
+        "sd": 0.006549516952348234,
+        "p5": -0.00955283067492339,
+        "p95": 0.009383338570710742
+      },
+      "vertical": {
+        "mean": -0.0004898721752396209,
+        "sd": 0.0030494640002318198,
+        "p5": -0.0068007286529534385,
+        "p95": 0.003687120740744873
+      },
+      "moved_only": {
+        "along": {
+          "mean": 0.01883398368988109,
+          "sd": 0.014418883418771039,
+          "p5": -0.0006545726134353508,
+          "p95": 0.04404196366599004
+        },
+        "lateral": {
+          "mean": -0.00012577763364225912,
+          "sd": 0.011632033645610848,
+          "p5": -0.01808826857501909,
+          "p95": 0.01770893049242767
+        },
+        "vertical": {
+          "mean": -0.001420635915146382,
+          "sd": 0.005297461764759221,
+          "p5": -0.010124390457322592,
+          "p95": 0.006316653459223226
+        }
+      }
+    },
+    "handoff_offset_approach_frame": {
+      "along": {
+        "mean": 0.05687682697424314,
+        "sd": 0.022460318091013374,
+        "p5": 0.01559440644177428,
+        "p95": 0.08630352279399563
+      },
+      "lateral": {
+        "mean": -0.0006920577427927476,
+        "sd": 0.015327796939650454,
+        "p5": -0.025720428978082764,
+        "p95": 0.024773380500811928
+      },
+      "vertical": {
+        "mean": 0.015103587202840342,
+        "sd": 0.012253536853250657,
+        "p5": -0.009139130988888515,
+        "p95": 0.0324271830715794
+      }
+    },
+    "correlation_disturbance_vs_offset": {
+      "along": -0.8124876257182193,
+      "lateral": -0.6454248515858289,
+      "vertical": -0.32746370734072566
+    },
+    "offset_along_given_undisturbed": {
+      "mean": 0.06824036286049516,
+      "sd": 0.013000636411976582,
+      "p5": 0.04460205392937509,
+      "p95": 0.08758929499308
+    },
+    "offset_along_given_disturbed": {
+      "mean": 0.03239324650007871,
+      "sd": 0.018696272484553644,
+      "p5": -0.0013991060519692028,
+      "p95": 0.06156290906401288
+    },
+    "sample_file": "results/mujoco_train/reach_handoff_sample.npy"
+  },
+  "push_reset_naive_placement": {
+    "n": 300,
+    "deepest_penetration": -0.019850437061563794,
+    "frac_penetration_below_1mm": 0.2733333333333333,
+    "frac_penetration_below_tolerance": 0.25333333333333335,
+    "cube_jump_max": 0.012002292357849503,
+    "frac_cube_jump_above_5mm": 0.06666666666666667,
+    "handoff_distance_median": 0.06599528453523529
+  },
+  "live_env_reset": {
+    "n": 500,
+    "min_cube_goal_separation": 0.05288076734715723,
+    "frac_born_successful": 0.0,
+    "frac_cube_disturbed_above_1mm": 0.292,
+    "cube_disturbance_max": 0.060230554958265306,
+    "handoff_distance_median": 0.0656961672570889,
+    "handoff_distance_max": 0.5683738163744111,
+    "placements_mean": 2.676,
+    "placements_max": 16,
+    "frac_needing_retreat": 0.13,
+    "retreat_mean_when_used": 0.011384615384615384,
+    "retreat_max": 0.028,
+    "handoff_distance_median_no_retreat": 0.06827045233721875,
+    "handoff_distance_median_retreated": 0.04272809485638146,
+    "frac_separation_fallback": 0.0
+  },
+  "constants": {
+    "MIN_SEPARATION": 0.05,
+    "SUCCESS_RADIUS": 0.05,
+    "WAYPOINT_OFFSET": 0.08,
+    "CUBE_Z": 0.02,
+    "MAX_RESET_PENETRATION": -0.002
+  }
+}

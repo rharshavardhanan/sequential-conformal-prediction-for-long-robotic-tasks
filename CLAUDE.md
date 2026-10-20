@@ -5,10 +5,49 @@ long-horizon manipulation policy, so a failing rollout can be flagged mid-episod
 with a bounded false-alarm rate. Simulator is LIBERO (`libero_10` suite) on
 robosuite 1.4.1 / MuJoCo.
 
+## Layout
+
+```
+scripts/     code — the only thing you edit
+  probes/      one-shot measurements whose answers are now frozen below
+  setup/       bootstrap.sh, runpod_setup.sh, libero-macos.patch
+data/        every generated artifact — the only thing scripts write to
+  rollouts/    task{0,1,8}_v10.hdf5 + session_log.json
+  init_states/ extended init pools (task{id}_init_160.npy)
+  results/     cp_*.json, verification_*.json, action_space.json
+  logs/
+docs/        technical-report.md, verification-report.md, status.md, superpowers/
+third_party/ LIBERO clone (gitignored, rebuilt by bootstrap)
+```
+
+`data/` is one `.gitignore` line by design: a new output needs no new rule.
+
+## Two environments — get this wrong and nothing works
+
+**`uv run` is NOT how you run the pipeline.** There are two venvs and they are
+not interchangeable:
+
+| env | built from | holds | used by |
+|---|---|---|---|
+| `.venv` | `uv sync` (pyproject + uv.lock) | LIBERO, robosuite, numpy **<1.24** | `scripts/probes/*` only |
+| `.venv-lerobot` | `requirements-lerobot.txt` | + lerobot 0.4.4, numpy **2.2.6**, torch 2.10 | **the entire live pipeline** |
+
+They conflict on numpy and cannot be merged: robosuite 1.4 predates the numpy 2
+ABI break, lerobot requires numpy 2.x. So every pipeline command is spelled
+`.venv-lerobot/bin/python -m scripts.X`, never `uv run`.
+
+`requirements-lerobot.txt` was frozen 2026-09-08 from the env that produced all
+450 rollouts. `scripts/fingerprint.py` aborts collection when the environment
+drifts from the recorded fingerprint — that manifest is what makes such an abort
+recoverable rather than terminal.
+
 ## Setup
 
 ```bash
-./scripts/bootstrap.sh      # clones LIBERO, patches it, writes ~/.libero/config.yaml, uv sync
+./scripts/setup/bootstrap.sh   # clones LIBERO, patches it, writes ~/.libero/config.yaml, uv sync
+uv venv --python 3.10 .venv-lerobot
+uv pip install --python .venv-lerobot/bin/python -r requirements-lerobot.txt
+uv pip install --python .venv-lerobot/bin/python -e third_party/LIBERO
 ```
 
 Upstream gotchas the bootstrap handles — all of these will bite again on the GPU
@@ -23,43 +62,54 @@ box, so run `bootstrap.sh` there too rather than installing by hand:
   --use-huggingface` globs `libero_100/*`, which matches nothing in the HF repo
   (it stores `libero_10/` and `libero_90/`) — it downloads zero files silently.
   Bootstrap calls `snapshot_download` directly: 13.7 GB instead of 80 GB.
-- `patches/libero-macos.patch` carries five source fixes; see the header comment
-  in `bootstrap.sh` for what each one is and why.
+- `scripts/setup/libero-macos.patch` carries five source fixes; see the header
+  comment in `bootstrap.sh` for what each one is and why.
 
-Deps are a trimmed manifest (LIBERO's own `setup.py` declares
-`install_requires=[]`). The `lifelong` training stack is in a separate group
-(`uv sync --group train`); rollout collection never imports it. `egl-probe`
-(a robomimic dep) is confined to Linux via `override-dependencies` — it
-cmake-fails on Apple Silicon because EGL does not exist on macOS, and nothing
-on a Mac calls it.
+## Policy — downloaded, not trained
 
-## Policy
+**Nothing trains.** The policy is a frozen pretrained LeRobot `DiffusionPolicy`
+(DDPM, ResNet18 encoder, `n_obs_steps=5`, `n_action_steps=8`), one checkpoint per
+task, pulled from the Hub:
 
-No usable pretrained checkpoint exists: LIBERO ships none, and its zoo is
-BC-RNN / BC-Transformer / BC-ViLT (no diffusion policy). Public libero_10
-checkpoints on HF are 7B VLAs or use incompatible obs/action conventions. So we
-train our own BC-Transformer, which satisfies the 7 x [-1,1] delta action format
-and the 128x128 two-camera obs spec *by construction* — verified: the demo files
-report `ac_dim=7`.
+| repo | tasks |
+|---|---|
+| `yzembodied/libero10_task{0,1,2}_diffusion` | 0, 1, 2 |
+| `yzembodied/libeo10_task{3,8}_diffusion` | 3, 8 — note the upstream `libeo` typo |
 
-Success rate must land in **40-80%**: below it there is too little nominal
-behaviour to calibrate on, above it too few failures to detect. Training our own
-makes this a dial (pick the epoch) rather than luck.
+`from_pretrained()` downloads finished weights, `.eval()` freezes them,
+`@torch.no_grad()` forbids gradients.
+
+Measured success rates sit in the required **40-80%** band for tasks 0 and 1
+(0.687, 0.727) — below the band there is too little nominal behaviour to
+calibrate on, above it too few failures to detect. Task 8 is **0.853, out of
+band**; see `docs/status.md`.
+
+**Normalization is applied by hand on purpose** (`scripts/dp_policy.py`). These
+checkpoints store stats as `normalize_inputs.*` / `unnormalize_outputs.*` inside
+`model.safetensors` (pre-0.4 LeRobot layout). lerobot 0.4.4 moved to external
+processor files and **discards those keys on load**, leaving the policy with no
+stats — a naive `from_pretrained()` returns plausible-looking 7-vectors that are
+pure garbage.
 
 **Freeze the checkpoint for the whole collection.** CP's guarantee assumes one
 data-generating process; a mid-collection swap silently mixes two robots into one
-calibration set. `scripts/common.py:sha256_file` stamps the checkpoint hash into
-every rollout so a swap is detectable after the fact.
+calibration set. `scripts/fingerprint.py:file_sha256` stamps the checkpoint hash
+into every rollout so a swap is detectable after the fact.
 
-## Checks
+## Commands
 
 ```bash
-uv run python scripts/check_action_space.py    # controller config + scaling, writes action_space.json
-uv run python -m scripts.profile_train_step    # is training data- or compute-bound?
-uv run python -m scripts.train_single_task --task-id 0 --n-epochs 50 --eval-every 5 --n-eval 20
-uv run python -m scripts.eval_checkpoint --checkpoint <path> --task-id 0 --n-eval 20
-uv run python scripts/check_tracking_gain.py   # OSC compliance gain
-uv run python scripts/check_timing.py          # sim throughput, Mac vs cloud sizing
+# --- live pipeline (.venv-lerobot ONLY) ---
+.venv-lerobot/bin/python -m scripts.collect_rollouts --task-id 0 --n-rollouts 150
+.venv-lerobot/bin/python -m scripts.verify_spec  --rollouts data/rollouts/task0_v10.hdf5
+.venv-lerobot/bin/python -m scripts.cp_monitor   --rollouts data/rollouts/task0_v10.hdf5 --alpha 0.1
+.venv-lerobot/bin/python -m scripts.show_rollout data/rollouts/task0_v10.hdf5 -r 0
+.venv-lerobot/bin/python -m scripts.gen_init_states --task-id 0 --n 160
+
+# --- probes: answers already frozen below, kept as provenance (.venv) ---
+uv run python scripts/probes/check_action_space.py   # controller config + scaling
+uv run python scripts/probes/check_tracking_gain.py  # OSC compliance gain
+uv run python scripts/probes/check_timing.py         # sim throughput, Mac vs cloud
 ```
 
 ## Action space — confirmed, do not re-derive
@@ -78,21 +128,11 @@ planned_rot = ...                    action[3:6] * 0.5       # radians (axis-ang
 setpoint is unclipped. The goal is re-anchored to the *measured* eef pose every
 control step, not integrated from the previous setpoint.
 
-## Training cost, measured on this Mac (M-series, MPS)
-
-BC-Transformer is 5.4M params but encodes 10 frames x 2 cameras per sample, so
-it is **compute-bound, not I/O-bound** — 673 ms/batch compute vs 65 ms data at
-batch 32. More DataLoader workers will not help.
-
-| | |
-|---|---|
-| per epoch (459 batches, 14,700 seqs from 50 demos) | 5.65 min |
-| 50 epochs x 1 task | 4.7 h |
-| 50 epochs x 10 tasks | **47 h** |
-
-Sim itself is *not* the bottleneck: MuJoCo runs at 200 Hz state-only and 80 Hz
-with 2x128px cameras, so rollout collection is a couple of hours. Training is
-what belongs on the GPU box.
+**OSC is compliant**: realised motion is a near-constant 0.25 of the commanded
+delta (gain 0.251, sd 0.006, over the full command range). So a raw
+`||planned - executed||` is ~0.75x the commanded delta — mostly a readout of
+commanded speed, not of anomaly. Normalise by `||commanded delta||` or keep
+speed roughly constant within each calibration bucket.
 
 ## Init states — 50 or 100, it is a choice
 
@@ -106,17 +146,26 @@ Each task ships **two** init-state files, and they differ:
 `task.init_states_file` resolves to the **pruned** one, so LIBERO's own eval has
 only 50 distinct starts. `evaluate_one_task_success` indexes with
 `% init_states.shape[0]`, so asking for 100 rollouts silently replays each start
-twice. For the 100-rollout-per-task rule to give 100 *distinct* initial
-conditions, load the `.init` file explicitly. (Upstream pruned to 50 without
-documenting why — verify the extra 50 are actually solvable before relying on
-them.)
+twice.
 
-## Action space — confirmed, do not re-derive
+Collecting 150 rollouts from 100 states with `i % 100` reuses states 0-49 twice —
+a *structured* reuse pattern, which is not exchangeable and breaks CP's
+assumption. `scripts/gen_init_states.py` extends each pool to 160 validated
+states so every rollout gets its own; `collect_rollouts.py` prefers
+`data/init_states/task{id}_init_160.npy` and falls back to the shipped file.
 
-(see the earlier section; the key line is `action[:3] * 0.05`)
+## Dormant: the BC-Transformer path
 
-**OSC is compliant**: realised motion is a near-constant 0.25 of the commanded
-delta (gain 0.251, sd 0.006, over the full command range). So a raw
-`||planned - executed||` is ~0.75x the commanded delta — mostly a readout of
-commanded speed, not of anomaly. Normalise by `||commanded delta||` or keep
-speed roughly constant within each calibration bucket.
+The project originally trained its own BC-Transformer. That path was removed on
+2026-09-08 (`scripts/train_*.py`, `eval_checkpoint.py`, `common.py`,
+`profile_train_step.py`, `watch_training.py`, and the `train` dependency group) —
+recoverable from git history if training ever returns. Kept here because the
+sizing numbers still govern any decision to resume:
+
+BC-Transformer is 5.4M params but encodes 10 frames x 2 cameras per sample, so it
+is **compute-bound, not I/O-bound** — 673 ms/batch compute vs 65 ms data at batch
+32. More DataLoader workers will not help. Per epoch 5.65 min (459 batches,
+14,700 seqs from 50 demos); 50 epochs x 1 task = 4.7 h; **x 10 tasks = 47 h**.
+
+Sim itself is *not* the bottleneck: MuJoCo runs at 200 Hz state-only and 80 Hz
+with 2x128px cameras, so rollout collection is a couple of hours.

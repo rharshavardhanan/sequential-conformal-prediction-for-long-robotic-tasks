@@ -1,0 +1,9 @@
+﻿start eval=0.75 (prefill done, 1.2 min)
+extra=50000 eval=0.81 best=0.81@50000 (13 min)
+extra=100000 eval=0.81 best=0.81@50000 (26 min)
+extra=150000 eval=0.85 best=0.85@150000 (38 min)
+extra=200000 eval=0.87 best=0.87@200000 (51 min)
+extra=250000 eval=0.84 best=0.87@200000 (63 min)
+extra=300000 eval=0.83 best=0.87@200000 (75 min)
+extra=350000 eval=0.90 best=0.90@350000 (87 min)
+DONE {'eval_success': 0.9, 'extra_steps': 350000, 'file': 'step350000'}

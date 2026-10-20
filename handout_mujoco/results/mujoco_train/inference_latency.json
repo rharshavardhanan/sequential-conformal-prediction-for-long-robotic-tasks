@@ -1,0 +1,35 @@
+{
+  "checkpoint": "results/mujoco_train/push_expert/seed0/best_model.zip",
+  "batch_size": 1,
+  "mps_synchronize_used": true,
+  "torch": "2.10.0",
+  "results": {
+    "cpu": {
+      "device": "cpu",
+      "n_warmup": 100,
+      "n_timed": 1000,
+      "mean_ms": 0.10968819198751589,
+      "sd_ms": 0.014096930426553966,
+      "p50_ms": 0.10627050141920336,
+      "p95_ms": 0.13042945029155817,
+      "min_ms": 0.09649999992689118,
+      "actor_params": 541190,
+      "total_params": 2751082
+    },
+    "mps": {
+      "device": "mps",
+      "n_warmup": 100,
+      "n_timed": 1000,
+      "mean_ms": 3.3759466190313105,
+      "sd_ms": 2.0578047967997386,
+      "p50_ms": 2.6582499995129183,
+      "p95_ms": 7.621362201098234,
+      "min_ms": 1.1158329944009893,
+      "actor_params": 541190,
+      "total_params": 2751082
+    }
+  },
+  "chosen_device": "cpu",
+  "speedup_over_slower": 25.013996960708475,
+  "decision": "All Phase-9 arms MUST be timed batch-1 on 'cpu'. Mixing devices across arms would turn a device switch into an apparent compute saving."
+}

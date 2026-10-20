@@ -38,19 +38,29 @@ def main():
                 f"scaling : pos x {f.attrs.get('pos_scale')}  rot x {f.attrs.get('rot_scale')}"
             )
             print(f"\n{len(keys)} rollouts\n")
-            print(
+            v10 = bool(keys) and "split" in f[keys[0]].attrs
+            hdr = (
                 f"{'rollout':>9} {'outcome':>8} {'steps':>6} "
                 f"{'err_norm mean':>13} {'p95':>7} {'max':>7} {'err_raw mean':>13}"
             )
+            if v10:
+                hdr += f" {'split':>6} {'regrasp':>8} {'masked':>7} {'init':>5}"
+            print(hdr)
             for k in keys:
                 g = f[k]
                 en, er = g["err_norm"][:], g["err_raw"][:]
-                print(
+                line = (
                     f"{k.split('_')[1]:>9} "
                     f"{'SUCCESS' if g.attrs['success'] else 'fail':>8} "
                     f"{g.attrs['steps']:>6} {en.mean():>13.3f} "
                     f"{np.percentile(en, 95):>7.3f} {en.max():>7.3f} {er.mean():>13.5f}"
                 )
+                if v10:
+                    line += (
+                        f" {g.attrs['split']:>6} {g.attrs['regrasp_count']:>8}"
+                        f" {g.attrs['n_masked_steps']:>7} {g.attrs['init_state_index']:>5}"
+                    )
+                print(line)
             if keys:
                 allen = np.concatenate([f[k]["err_norm"][:] for k in keys])
                 print(
@@ -72,7 +82,21 @@ def main():
         )
         print(f"\navailable arrays:")
         for name in g:
-            print(f"  {name:16s} {str(g[name].shape):14s} {g[name].dtype}")
+            if name == "images":
+                for c in g["images"]:
+                    print(f"  images/{c:9s} {str(g['images'][c].shape):18s} {g['images'][c].dtype}")
+            else:
+                print(f"  {name:16s} {str(g[name].shape):18s} {g[name].dtype}")
+        if "split" in g.attrs:
+            print(f"\n  split={g.attrs['split']}  seed={g.attrs['seed']}  "
+                  f"init_state={g.attrs['init_state_index']}  "
+                  f"regrasps={g.attrs['regrasp_count']}  "
+                  f"masked_steps={g.attrs['n_masked_steps']}")
+            if "predicates" in g:
+                pr = g["predicates"][:]
+                first = [int(np.argmax(pr[:, j])) if pr[:, j].any() else -1
+                         for j in range(pr.shape[1])]
+                print(f"  predicates satisfied first at steps: {first}  (-1 = never)")
 
         print(f"\nsub-phases ({len(segs)} segments):")
         for s, e, p in segs:

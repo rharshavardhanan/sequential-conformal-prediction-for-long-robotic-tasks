@@ -1,0 +1,24 @@
+{
+  "n_success": 11,
+  "n_fail": 9,
+  "alpha": 0.2,
+  "alpha_per_phase": 0.2,
+  "correction": "none",
+  "score": "err_norm",
+  "thresholds": {
+    "reach": 1.1099255391433656,
+    "grasp": 1.3505683720994726,
+    "transport": 0.9222580543446197,
+    "release": 2.454399172066712
+  },
+  "feasible": {
+    "reach": true,
+    "grasp": true,
+    "transport": true,
+    "release": true
+  },
+  "false_alarm_rate": 0.6666666666666666,
+  "detection_rate": 0.7777777777777778,
+  "median_lead_steps": 480.0,
+  "policy_sha256": "3105133cc3bddf79320aa42b6ecebfbe015645be99a8d18f4685144711683051"
+}

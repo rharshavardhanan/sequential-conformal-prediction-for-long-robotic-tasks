@@ -1,0 +1,24 @@
+{
+  "score_max": 0.6761175092719109,
+  "score_mean": 0.6492289674019129,
+  "score_p90": 0.6583707463075021,
+  "score_max_reach": 0.5514347062268202,
+  "score_max_push": 0.7070652357899726,
+  "frac_steps_over_q_esc": 0.544643438089661,
+  "action_saturation": 0.31962066497494956,
+  "ee_path_len": 0.9092328713644349,
+  "cube_displacement": 0.7386622421758084,
+  "final_cube_to_goal": 1.0,
+  "cube_goal_progress": 0.16515388118940724,
+  "episode_len": 0.9994876049189928,
+  "min_ee_to_reachgoal": 0.4888574403019064,
+  "early": {
+    "first_2": 0.5022122454291106,
+    "first_4": 0.5295725161038454,
+    "first_8": 0.5376895048474202,
+    "first_16": 0.5908321946775977,
+    "first_999": 0.6761175092719109
+  },
+  "n_episodes": 500,
+  "failure_rate": 0.564
+}

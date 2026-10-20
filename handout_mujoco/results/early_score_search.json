@@ -1,0 +1,97 @@
+{
+  "t0": {
+    "singles": {
+      "d_cube_goal_0": 0.7439976576224868,
+      "d_ee_cube_0": 0.6637874943067213,
+      "d_ee_reachgoal_0": 0.4678085757043399,
+      "align_0": 0.3080226429826274,
+      "goal_behind_cube_0": 0.3080226429826274,
+      "cube_goal_vs_reach_0": 0.5004717288047368,
+      "d_cube_goal_t": 0.7439976576224868,
+      "cube_progress_t": 0.5,
+      "cube_moved_t": 0.5,
+      "d_ee_cube_t": 0.6637874943067213,
+      "align_t": 0.3080226429826274,
+      "ee_speed_t": 0.5,
+      "cube_speed_t": 0.5
+    },
+    "combined_heldout_auc": 0.7888198757763976,
+    "best_single": "d_cube_goal_0",
+    "best_single_auc": 0.7439976576224868
+  },
+  "t2": {
+    "singles": {
+      "d_cube_goal_0": 0.7439976576224868,
+      "d_ee_cube_0": 0.6637874943067213,
+      "d_ee_reachgoal_0": 0.4678085757043399,
+      "align_0": 0.3080226429826274,
+      "goal_behind_cube_0": 0.3080226429826274,
+      "cube_goal_vs_reach_0": 0.5004717288047368,
+      "d_cube_goal_t": 0.7439976576224868,
+      "cube_progress_t": 0.4892803695751187,
+      "cube_moved_t": 0.5583398399375366,
+      "d_ee_cube_t": 0.5372665755742079,
+      "align_t": 0.37211269438480055,
+      "ee_speed_t": 0.532972216800052,
+      "cube_speed_t": 0.4618712993688594,
+      "score_max_t": 0.5095647081788015,
+      "score_mean_t": 0.5122486824126489,
+      "act_sat_t": 0.501659184071833,
+      "act_norm_t": 0.5222525863751708,
+      "motion_efficiency_t": 0.5177955624959334
+    },
+    "combined_heldout_auc": 0.7838379917184265,
+    "best_single": "d_cube_goal_0",
+    "best_single_auc": 0.7439976576224868
+  },
+  "t4": {
+    "singles": {
+      "d_cube_goal_0": 0.7439976576224868,
+      "d_ee_cube_0": 0.6637874943067213,
+      "d_ee_reachgoal_0": 0.4678085757043399,
+      "align_0": 0.3080226429826274,
+      "goal_behind_cube_0": 0.3080226429826274,
+      "cube_goal_vs_reach_0": 0.5004717288047368,
+      "d_cube_goal_t": 0.7442904548116338,
+      "cube_progress_t": 0.5173075671806884,
+      "cube_moved_t": 0.560047823540894,
+      "d_ee_cube_t": 0.45598282256490336,
+      "align_t": 0.4225063439390982,
+      "ee_speed_t": 0.5576159802199232,
+      "cube_speed_t": 0.5071003318368144,
+      "score_max_t": 0.5520040340946061,
+      "score_mean_t": 0.5377383043789447,
+      "act_sat_t": 0.5270512069750797,
+      "act_norm_t": 0.543659314203917,
+      "motion_efficiency_t": 0.526888541869998
+    },
+    "combined_heldout_auc": 0.7899844720496895,
+    "best_single": "d_cube_goal_t",
+    "best_single_auc": 0.7442904548116338
+  },
+  "t8": {
+    "singles": {
+      "d_cube_goal_0": 0.7439976576224868,
+      "d_ee_cube_0": 0.6637874943067213,
+      "d_ee_reachgoal_0": 0.4678085757043399,
+      "align_0": 0.3080226429826274,
+      "goal_behind_cube_0": 0.3080226429826274,
+      "cube_goal_vs_reach_0": 0.5004717288047368,
+      "d_cube_goal_t": 0.7795399830828291,
+      "cube_progress_t": 0.44233522024855226,
+      "cube_moved_t": 0.5869038323898758,
+      "d_ee_cube_t": 0.48243216865118094,
+      "align_t": 0.36845272952046326,
+      "ee_speed_t": 0.4515745982171904,
+      "cube_speed_t": 0.5275229357798165,
+      "score_max_t": 0.5707267876895048,
+      "score_mean_t": 0.5243509662307242,
+      "act_sat_t": 0.5063358058429306,
+      "act_norm_t": 0.5168846379074761,
+      "motion_efficiency_t": 0.4665723209057193
+    },
+    "combined_heldout_auc": 0.8291278467908902,
+    "best_single": "d_cube_goal_t",
+    "best_single_auc": 0.7795399830828291
+  }
+}

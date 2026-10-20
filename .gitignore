@@ -1,31 +1,35 @@
-# Python-generated files
+# Python
 __pycache__/
 *.py[oc]
-build/
-dist/
-wheels/
 *.egg-info
+.ruff_cache/
 
-# Virtual environments
-.venv
+# Environments. Both are rebuildable, neither is committed:
+#   .venv          uv sync                    (pyproject.toml + uv.lock)
+#   .venv-lerobot  requirements-lerobot.txt   (the env the pipeline RUNS in)
+.venv*/
+
+# Upstream LIBERO clone, recreated by scripts/setup/bootstrap.sh (carries its own .git)
+third_party/
+
+# Every generated artifact lives here -- rollouts, init states, results, logs.
+# One line by design: the invariant is that scripts/ is the only thing edited
+# and data/ the only thing written to. A new output needs no new ignore rule.
+data/
+
+# Staged deletions from the 2026-09-08 reorganization, kept until you are
+# satisfied nothing is missing. Empty with:  rm -rf .trash
+.trash/
 
 .DS_Store
 .env
 
-# upstream clone, recreated by scripts/bootstrap.sh (carries its own .git)
-third_party/
-
-# collection output
-data/
-rollouts/
-
-experiments/
-eval_result.json
+# Datasets and model weights: large, downloadable or regenerable, never committed.
+# (GitHub rejects files over 100 MB; roboturk/ alone is 3.4 GB.)
 bert/
-logs/
-dataset_preview/
-summaries/
-checkpoints.json
-.venv-lerobot/
-pretrained_dp_result.json
-pretrained_dp_task*.json
+*.zip
+*.npz
+*.npy
+*.hdf5
+*.pt
+*.safetensors

@@ -1,0 +1,28 @@
+{
+  "checkpoint_sha256": "a3f61533104d494368c5a055b324f8d31522b4623bb978b4290a7ada845446b0",
+  "libs": {
+    "python": "3.13.2",
+    "torch": "2.6.0+cu118",
+    "numpy": "2.2.3",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "device": "NVIDIA GeForce RTX 3050 6GB Laptop GPU"
+  },
+  "train_config": {
+    "arch": "state-only BC-RNN: MLP(37->256->256) + LSTM(256x2) + GMM(5 modes, 8-dim)",
+    "epochs": 15,
+    "lr": 0.0003,
+    "batch": 128,
+    "window": 64,
+    "stride": 32,
+    "train_episodes": 316,
+    "val_episodes": 56,
+    "final_train_nll": -12.532955588731074,
+    "final_val_nll": -13.017185264108983
+  },
+  "decisions": {
+    "D1": "action = user_control[:,0:7] (IK joint targets) + user_control[:,20] (grasp bool); native fields, no reconstruction, no robosuite. JOINT-TARGET space - different from the LeRobot mirror (delta-EEF) and the sim side (delta-pos OSC); no cross-source comparison.",
+    "D2": "state-only: eef_poses(7)+joint_states_arm(27)+joint_states_gripper(3) = 37-dim. No images.",
+    "D3": "aligned file *_times are a miscalibrated clock (~1/40.7 scale); real clock is user_control[:,21] (UTC), ~20 Hz but jittered/gappy -> fixed 20 Hz grid, linear for continuous fields, nearest for the grasp bool."
+  },
+  "phase_model": "Part 2 Option A, K=2 (closed/open) via user_control[:,20]"
+}

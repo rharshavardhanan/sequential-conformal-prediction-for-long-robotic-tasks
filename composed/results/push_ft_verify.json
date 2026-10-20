@@ -1,0 +1,88 @@
+{
+  "doc": "Verify the fine-tuned Push checkpoint on FRESH seeds, same protocol and bar as Part 1.\n\nChosen checkpoint = best eval-seed checkpoint from push_finetune_log.json (selection seeds\n170000..170099).  Verification: 200 fresh seeds (200000..200199), sparse PandaPush-v3,\nnative TimeLimit + success-termination, deterministic.  Bar unchanged: success >= 0.80.\nThe ORIGINAL checkpoint (step0 = enaitzb/TQC unmodified) is re-run on the same fresh seeds\nfor a paired comparison.\n",
+  "chosen": "step350000",
+  "chosen_dir": "push_ft2",
+  "run1_curve": [
+    [
+      0,
+      0.78
+    ],
+    [
+      50000,
+      0.76
+    ],
+    [
+      100000,
+      0.72
+    ],
+    [
+      150000,
+      0.76
+    ],
+    [
+      200000,
+      0.77
+    ],
+    [
+      250000,
+      0.75
+    ]
+  ],
+  "eval_seed_success": 0.9,
+  "fresh_verification": {
+    "success": 180,
+    "n": 200,
+    "success_rate": 0.9,
+    "wilson95": [
+      0.8505941871160769,
+      0.9343295515487526
+    ],
+    "max_episode_steps": 50,
+    "steps_to_success_mean": 9.427777777777777,
+    "steps_to_success_median": 8.0,
+    "steps_to_success_p90": 17.0,
+    "steps_to_success_max": 41
+  },
+  "passes_bar": true,
+  "original_same_fresh_seeds": 0.685,
+  "paired_vs_original": {
+    "ft_only": 51,
+    "orig_only": 8,
+    "mcnemar_exact_p": 9.052391166525231e-09
+  },
+  "actor_params": 541190,
+  "learning_curve": [
+    [
+      0,
+      0.75
+    ],
+    [
+      50000,
+      0.81
+    ],
+    [
+      100000,
+      0.81
+    ],
+    [
+      150000,
+      0.85
+    ],
+    [
+      200000,
+      0.87
+    ],
+    [
+      250000,
+      0.84
+    ],
+    [
+      300000,
+      0.83
+    ],
+    [
+      350000,
+      0.9
+    ]
+  ]
+}

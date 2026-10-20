@@ -1,0 +1,46 @@
+{
+  "doc": "Fine-tune the best Push checkpoint (enaitzb/TQC-PandaPush-v3: 125k env steps, measured 0.715).\n\nSmoke test (logged in the report): resuming with the checkpoint's own settings (n_envs=1,\nbatch 2048, lr 1e-3, empty replay buffer -- the buffer is not stored in the checkpoint)\ncollapsed eval success 0.78 -> 0.18 within 3k steps, at 24 env-steps/s.  Profiling showed\n~30 gradient updates/s regardless of batch size (HER sampling dominated), so this version:\n  * 8 subprocess envs, 2 gradient steps per 8 env steps (update-to-data 0.25)\n  * PREFILL 50k env steps with the current (stochastic) policy before any update\n  * lr 1e-4, batch 1024; everything else from the checkpoint (gamma 0.95, tau 0.05,\n    3x512, 2 critics, top-2 quantile drop, HER future k=4, VecNormalize stats continue updating)\nSelection: every CHUNK env steps, 100 deterministic eval episodes (seeds 170000..170099,\nfrozen normalisation copy); keep the best; stop at eval >= 0.90 or MAX_EXTRA env steps.\nThe chosen checkpoint is then verified on FRESH seeds (verify_push_ft.py), bar 0.80.\n",
+  "chunks": [
+    {
+      "extra_steps": 0,
+      "eval_success": 0.78,
+      "prefill": 50000,
+      "wall_min": 0.6736868580182394
+    },
+    {
+      "extra_steps": 50000,
+      "eval_success": 0.76,
+      "wall_min": 7.313085516293843,
+      "ent_coef": 0.0003867895866278559
+    },
+    {
+      "extra_steps": 100000,
+      "eval_success": 0.72,
+      "wall_min": 14.239846603075664,
+      "ent_coef": 0.0005022060940973461
+    },
+    {
+      "extra_steps": 150000,
+      "eval_success": 0.76,
+      "wall_min": 20.914314142862956,
+      "ent_coef": 0.00054478197125718
+    },
+    {
+      "extra_steps": 200000,
+      "eval_success": 0.77,
+      "wall_min": 27.585153269767762,
+      "ent_coef": 0.0005746668903157115
+    },
+    {
+      "extra_steps": 250000,
+      "eval_success": 0.75,
+      "wall_min": 34.352534826596575,
+      "ent_coef": 0.000617660756688565
+    }
+  ],
+  "best": {
+    "eval_success": 0.78,
+    "extra_steps": 0,
+    "file": "step0"
+  }
+}

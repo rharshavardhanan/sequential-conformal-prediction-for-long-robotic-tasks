@@ -1,0 +1,247 @@
+{
+  "supersedes": "partD.json",
+  "score": "||a_pred - a_demo||_2 over the 7 CONTINUOUS dims (user_control[:,0:7]) in raw joint-target space; the grasp bool is excluded from the magnitude and retained as the K=2 phase variable",
+  "alpha": 0.1,
+  "K": 2,
+  "alpha_k": 0.05,
+  "checkpoint_sha256": "a3f61533104d494368c5a055b324f8d31522b4623bb978b4290a7ada845446b0",
+  "device": "cpu",
+  "reproduction_gate": {
+    "rtol": 0.001,
+    "passed": true,
+    "closed": {
+      "partD": 2.2835631370544434,
+      "recomputed": 2.2836639881134033,
+      "delta": 0.00010085105895996094,
+      "n_cal": 79,
+      "rank": 76,
+      "passed": true
+    },
+    "open": {
+      "partD": 2.2110543251037598,
+      "recomputed": 2.2111051082611084,
+      "delta": 5.078315734863281e-05,
+      "n_cal": 79,
+      "rank": 76,
+      "passed": true
+    }
+  },
+  "grasp_diagnostic": {
+    "median_share_of_sq_err": 0.9852283000946045,
+    "frac_dominated": 0.8670886075949367,
+    "n": 158
+  },
+  "safety": {
+    "max": {
+      "closed": {
+        "q": 2.200474500656128,
+        "n_cal": 79,
+        "rank": 76,
+        "feasible": true,
+        "n_eval": 80,
+        "coverage": 1.0
+      },
+      "open": {
+        "q": 2.1862406730651855,
+        "n_cal": 79,
+        "rank": 76,
+        "feasible": true,
+        "n_eval": 80,
+        "coverage": 1.0
+      }
+    },
+    "pooled": {
+      "closed": {
+        "q": 0.3281865119934082,
+        "n_cal": 166155,
+        "rank": 157849,
+        "feasible": true,
+        "n_eval": 177544,
+        "coverage": 0.9761805524264408
+      },
+      "open": {
+        "q": 0.5655473470687866,
+        "n_cal": 229814,
+        "rank": 218325,
+        "feasible": true,
+        "n_eval": 231241,
+        "coverage": 0.9970161000860575
+      }
+    }
+  },
+  "escalation": {
+    "max": {
+      "0.20": {
+        "alpha_esc": 0.2,
+        "alpha_esc_k": 0.1,
+        "per_phase": {
+          "closed": {
+            "q": 0.8914231061935425,
+            "n_cal": 79,
+            "rank": 72,
+            "feasible": true,
+            "n_eval": 80,
+            "coverage": 0.95
+          },
+          "open": {
+            "q": 1.545845627784729,
+            "n_cal": 79,
+            "rank": 72,
+            "feasible": true,
+            "n_eval": 80,
+            "coverage": 1.0
+          }
+        },
+        "dual_threshold_ok": {
+          "closed": true,
+          "open": true
+        },
+        "eval_firing_rate": 0.0006996342820798219,
+        "primary": false
+      },
+      "0.30": {
+        "alpha_esc": 0.3,
+        "alpha_esc_k": 0.15,
+        "per_phase": {
+          "closed": {
+            "q": 0.6996710896492004,
+            "n_cal": 79,
+            "rank": 68,
+            "feasible": true,
+            "n_eval": 80,
+            "coverage": 0.925
+          },
+          "open": {
+            "q": 1.0447314977645874,
+            "n_cal": 79,
+            "rank": 68,
+            "feasible": true,
+            "n_eval": 80,
+            "coverage": 0.9875
+          }
+        },
+        "dual_threshold_ok": {
+          "closed": true,
+          "open": true
+        },
+        "eval_firing_rate": 0.001514243428697237,
+        "primary": true
+      },
+      "0.40": {
+        "alpha_esc": 0.4,
+        "alpha_esc_k": 0.2,
+        "per_phase": {
+          "closed": {
+            "q": 0.567559003829956,
+            "n_cal": 79,
+            "rank": 64,
+            "feasible": true,
+            "n_eval": 80,
+            "coverage": 0.8625
+          },
+          "open": {
+            "q": 0.9459236264228821,
+            "n_cal": 79,
+            "rank": 64,
+            "feasible": true,
+            "n_eval": 80,
+            "coverage": 0.9625
+          }
+        },
+        "dual_threshold_ok": {
+          "closed": true,
+          "open": true
+        },
+        "eval_firing_rate": 0.0027373802854801423,
+        "primary": false
+      }
+    },
+    "pooled": {
+      "0.20": {
+        "alpha_esc": 0.2,
+        "alpha_esc_k": 0.1,
+        "per_phase": {
+          "closed": {
+            "q": 0.17628835141658783,
+            "n_cal": 166155,
+            "rank": 149541,
+            "feasible": true,
+            "n_eval": 177544,
+            "coverage": 0.9255452169603028
+          },
+          "open": {
+            "q": 0.24054983258247375,
+            "n_cal": 229814,
+            "rank": 206834,
+            "feasible": true,
+            "n_eval": 231241,
+            "coverage": 0.9693350227684537
+          }
+        },
+        "dual_threshold_ok": {
+          "closed": true,
+          "open": true
+        },
+        "eval_firing_rate": 0.04968381912252162,
+        "primary": false
+      },
+      "0.30": {
+        "alpha_esc": 0.3,
+        "alpha_esc_k": 0.15,
+        "per_phase": {
+          "closed": {
+            "q": 0.14169657230377197,
+            "n_cal": 166155,
+            "rank": 141233,
+            "feasible": true,
+            "n_eval": 177544,
+            "coverage": 0.8627044563601135
+          },
+          "open": {
+            "q": 0.15761125087738037,
+            "n_cal": 229814,
+            "rank": 195343,
+            "feasible": true,
+            "n_eval": 231241,
+            "coverage": 0.9131122941000948
+          }
+        },
+        "dual_threshold_ok": {
+          "closed": true,
+          "open": true
+        },
+        "eval_firing_rate": 0.10878089949484447,
+        "primary": true
+      },
+      "0.40": {
+        "alpha_esc": 0.4,
+        "alpha_esc_k": 0.2,
+        "per_phase": {
+          "closed": {
+            "q": 0.12403282523155212,
+            "n_cal": 166155,
+            "rank": 132925,
+            "feasible": true,
+            "n_eval": 177544,
+            "coverage": 0.7994074708241338
+          },
+          "open": {
+            "q": 0.13086804747581482,
+            "n_cal": 229814,
+            "rank": 183852,
+            "feasible": true,
+            "n_eval": 231241,
+            "coverage": 0.8523445236787593
+          }
+        },
+        "dual_threshold_ok": {
+          "closed": true,
+          "open": true
+        },
+        "eval_firing_rate": 0.17064716171092384,
+        "primary": false
+      }
+    }
+  },
+  "caveats": "Per-timestep thresholds pool autocorrelated timesteps, break exchangeability, and carry NO coverage guarantee -- they are a compute-budget heuristic for choosing an escalation operating point. The safety guarantee lives in the per-episode-max q_hat_k alone. All demos are successes; no failure labels exist in RoboTurk, so nothing here is a detection or false-alarm rate."
+}

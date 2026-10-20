@@ -1,0 +1,28 @@
+{
+  "alpha": 0.1,
+  "K": 2,
+  "alpha_k": 0.05,
+  "n_min_calibrate_py": 19,
+  "n_min_libero": 79,
+  "per_category": {
+    "closed": {
+      "q": 2.2835631370544434,
+      "n_cal": 79,
+      "rank": 76,
+      "feasible": true,
+      "n_eval": 80,
+      "coverage": 1.0
+    },
+    "open": {
+      "q": 2.2110543251037598,
+      "n_cal": 79,
+      "rank": 76,
+      "feasible": true,
+      "n_eval": 80,
+      "coverage": 1.0
+    }
+  },
+  "joint_coverage_eval": 1.0,
+  "score": "predicted-vs-demonstrated ||a_pred - a_demo||_2 in JOINT-TARGET space; NOT the sim commanded-vs-executed score",
+  "caveats": "calibration-validity only; all demos = successes (no failure labels); no detection/escalation claim"
+}
