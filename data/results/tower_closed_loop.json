@@ -1,0 +1,52 @@
+{
+  "BC-RNN (cheap)": {
+    "policy": "BCRNN",
+    "n": 15,
+    "success": 0,
+    "rate": 0.0,
+    "mean_height": 1.0,
+    "mean_steps": 800.0,
+    "heights": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "ACT (expensive)": {
+    "policy": "ACT",
+    "n": 15,
+    "success": 0,
+    "rate": 0.0,
+    "mean_height": 1.0,
+    "mean_steps": 800.0,
+    "heights": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  }
+}

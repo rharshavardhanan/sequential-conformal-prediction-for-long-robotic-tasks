@@ -16,6 +16,12 @@ third_party/
 # One line by design: the invariant is that scripts/ is the only thing edited
 # and data/ the only thing written to. A new output needs no new ignore rule.
 data/
+# ...except, at the repo root only, the small shareable outputs: result JSONs/figures and demo videos.
+!/data/
+/data/*
+!/data/results/
+!/data/videos/
+data/results/demo_r76.mp4
 
 # Staged deletions from the 2026-09-08 reorganization, kept until you are
 # satisfied nothing is missing. Empty with:  rm -rf .trash
@@ -31,5 +37,7 @@ bert/
 *.npz
 *.npy
 *.hdf5
+# Screen recordings are 20-300 MB each (HARDWARE_RESULTS/, test_videos/); keep them off git.
+*.mov
 *.pt
 *.safetensors

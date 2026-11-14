@@ -1,0 +1,13 @@
+{
+  "repo": "yzembodied/libero10_task0_diffusion",
+  "task_id": 0,
+  "task": "put both the alphabet soup and the tomato sauce in the basket",
+  "n_eval": 20,
+  "n_success": 10,
+  "success_rate": 0.5,
+  "ci95": 0.21913466179497937,
+  "in_band_40_80": true,
+  "mean_rollout_sec": 101.86587194784988,
+  "flip_images": true,
+  "device": "mps"
+}

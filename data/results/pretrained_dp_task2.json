@@ -1,0 +1,13 @@
+{
+  "repo": "yzembodied/libero10_task2_diffusion",
+  "task_id": 2,
+  "task": "turn on the stove and put the moka pot on it",
+  "n_eval": 20,
+  "n_success": 20,
+  "success_rate": 1.0,
+  "ci95": 0.0,
+  "in_band_40_80": false,
+  "mean_rollout_sec": 56.10955403524931,
+  "flip_images": true,
+  "device": "mps"
+}

@@ -1,0 +1,19 @@
+{
+  "task_id": 0,
+  "task": "put both the alphabet soup and the tomato sauce in the basket",
+  "n_eval": 20,
+  "results": [
+    {
+      "epoch": 10,
+      "checkpoint": "data/checkpoints_bct/bct_task0_ep010.pth",
+      "sha256": "dfb20c446e5417145065c86f1309ec9f3c3d7ac5734f369d4211534b3b9db8ab",
+      "val_loss": null,
+      "n_eval": 20,
+      "n_success": 9,
+      "success_rate": 0.45,
+      "ci95": 0.2180362355206125,
+      "in_band_40_80": true,
+      "wall_sec": 218.09546862498973
+    }
+  ]
+}
