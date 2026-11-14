@@ -1,0 +1,13 @@
+{
+  "repo": "yzembodied/libeo10_task8_diffusion",
+  "task_id": 8,
+  "task": "put both moka pots on the stove",
+  "n_eval": 20,
+  "n_success": 17,
+  "success_rate": 0.85,
+  "ci95": 0.15649345034217885,
+  "in_band_40_80": false,
+  "mean_rollout_sec": 107.8322209083999,
+  "flip_images": true,
+  "device": "mps"
+}

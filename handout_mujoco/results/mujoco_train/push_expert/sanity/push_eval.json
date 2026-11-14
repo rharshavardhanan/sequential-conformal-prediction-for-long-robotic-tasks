@@ -1,0 +1,20 @@
+{
+  "label": "sanity_final",
+  "n_episodes": 20,
+  "success": 0.3,
+  "success_ci95": [
+    0.09915976498719187,
+    0.500840235012808
+  ],
+  "mean_episode_len": 37.2,
+  "median_episode_len": 50.0,
+  "frac_cube_fell": 0.0,
+  "mean_final_d_push": 0.11615361041519293,
+  "inference_ms_median": 1.3098330055072438,
+  "total_timesteps": 5000,
+  "wall_clock_s": 145.63886850000563,
+  "overall_fps": 34.331494411464796,
+  "steady_fps_median": 27.310387378499463,
+  "n_params_actor": 541190,
+  "total_params": 2751082
+}

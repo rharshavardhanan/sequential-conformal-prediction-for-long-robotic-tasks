@@ -17,6 +17,7 @@ delta space, so `action[:3] * 0.05` gives the commanded setpoint directly.
 
 import numpy as np
 import torch
+from lerobot.utils.constants import ACTION
 
 # LIBERO stores agentview bottom-up (macros_image_convention: opengl) and the
 # LeRobot conversions flip it. Confirmed empirically: unflipped, the robot hangs
@@ -87,6 +88,33 @@ class DiffusionPolicyRunner:
                 obs["robot0_gripper_qpos"],
             ]
         ).astype(np.float32)
+
+    @torch.no_grad()
+    def act_with_chunk(self, obs):
+        """Like act(), but also returns the diffusion action chunk (D.2).
+
+        lerobot generates `horizon` actions, keeps `n_action_steps` of them in a
+        queue, and pops one per call. The chunk is therefore only visible around
+        the step that generates it, and it is NOT reconstructable afterwards
+        because sampling is stochastic. FAIL-Detect consumes it, so it has to be
+        captured live.
+
+        Returns (action, chunk, is_new) where chunk is the action about to be
+        executed followed by everything still queued, unnormalized to LIBERO's
+        native space, and is_new marks the steps where the UNet actually ran.
+        """
+        was_empty = len(self.policy._queues[ACTION]) == 0
+        a = self.act(obs)
+        rest = [
+            minmax_denorm(x.squeeze(0), self.act_lo, self.act_hi).cpu().numpy()
+            for x in self.policy._queues[ACTION]
+        ]
+        chunk = np.stack([a] + rest) if rest else a[None]
+        return a, chunk.astype(np.float32), was_empty
+
+    @property
+    def n_action_steps(self):
+        return int(self.policy.config.n_action_steps)
 
     @torch.no_grad()
     def act(self, obs):

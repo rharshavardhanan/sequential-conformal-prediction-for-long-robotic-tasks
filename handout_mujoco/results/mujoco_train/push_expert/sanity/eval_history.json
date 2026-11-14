@@ -1,0 +1,86 @@
+[
+  {
+    "label": "step1250",
+    "n_episodes": 20,
+    "success": 0.0,
+    "success_ci95": [
+      0.0,
+      0.0
+    ],
+    "mean_episode_len": 50.0,
+    "median_episode_len": 50.0,
+    "frac_cube_fell": 0.0,
+    "mean_final_d_push": 0.16646076620122602,
+    "inference_ms_median": 1.5696039990871213,
+    "n_params": 2751082,
+    "timesteps": 1250,
+    "fps_interval": 179.47323244017545,
+    "after_learning_starts": false,
+    "actor_loss": -13.747442245483398,
+    "critic_loss": 0.06925893574953079,
+    "ent_coef": 0.7803323268890381
+  },
+  {
+    "label": "step2500",
+    "n_episodes": 20,
+    "success": 0.1,
+    "success_ci95": [
+      0.0,
+      0.23148079707698765
+    ],
+    "mean_episode_len": 45.55,
+    "median_episode_len": 50.0,
+    "frac_cube_fell": 0.0,
+    "mean_final_d_push": 0.12009792346830413,
+    "inference_ms_median": 1.78958399919793,
+    "n_params": 2751082,
+    "timesteps": 2500,
+    "fps_interval": 26.686641487160585,
+    "after_learning_starts": true,
+    "actor_loss": -8.447418212890625,
+    "critic_loss": 0.07453808188438416,
+    "ent_coef": 0.23025880753993988
+  },
+  {
+    "label": "step3750",
+    "n_episodes": 20,
+    "success": 0.15,
+    "success_ci95": [
+      0.0,
+      0.30649345034217884
+    ],
+    "mean_episode_len": 43.35,
+    "median_episode_len": 50.0,
+    "frac_cube_fell": 0.0,
+    "mean_final_d_push": 0.1308490817922956,
+    "inference_ms_median": 1.7872919997898862,
+    "n_params": 2751082,
+    "timesteps": 3750,
+    "fps_interval": 27.310387378499463,
+    "after_learning_starts": true,
+    "actor_loss": -1.1736164093017578,
+    "critic_loss": 0.04147026315331459,
+    "ent_coef": 0.07419007271528244
+  },
+  {
+    "label": "step5000",
+    "n_episodes": 20,
+    "success": 0.1,
+    "success_ci95": [
+      0.0,
+      0.23148079707698765
+    ],
+    "mean_episode_len": 45.55,
+    "median_episode_len": 50.0,
+    "frac_cube_fell": 0.0,
+    "mean_final_d_push": 0.14491295413882294,
+    "inference_ms_median": 1.3020000042160973,
+    "n_params": 2751082,
+    "timesteps": 5000,
+    "fps_interval": 33.487696619401056,
+    "after_learning_starts": true,
+    "actor_loss": 0.8108446598052979,
+    "critic_loss": 0.024689478799700737,
+    "ent_coef": 0.02673611231148243
+  }
+]

@@ -1,0 +1,167 @@
+{
+  "alpha": 0.1,
+  "K": 2,
+  "alpha_k": 0.05,
+  "score": "||a_pred - a_demo||_2 over the 7 continuous joint targets (grasp bool EXCLUDED -- it owned ~98.5% of the old threshold)",
+  "trigger": "BC-RNN predicted sigma (deployable: no ground-truth action needed)",
+  "per_category": {
+    "max": {
+      "closed": {
+        "q": 2.200474262237549,
+        "n_cal": 79,
+        "rank": 76,
+        "feasible": true,
+        "n_eval": 80,
+        "coverage": 1.0,
+        "eval_stat_max": 1.2130520343780518
+      },
+      "open": {
+        "q": 2.1862406730651855,
+        "n_cal": 79,
+        "rank": 76,
+        "feasible": true,
+        "n_eval": 80,
+        "coverage": 1.0,
+        "eval_stat_max": 1.1976218223571777
+      }
+    },
+    "p95": {
+      "closed": {
+        "q": 1.490856409072876,
+        "n_cal": 79,
+        "rank": 76,
+        "feasible": true,
+        "n_eval": 80,
+        "coverage": 1.0,
+        "eval_stat_max": 0.9732224345207214
+      },
+      "open": {
+        "q": 1.540305256843567,
+        "n_cal": 79,
+        "rank": 76,
+        "feasible": true,
+        "n_eval": 80,
+        "coverage": 1.0,
+        "eval_stat_max": 0.6473627686500549
+      }
+    },
+    "p90": {
+      "closed": {
+        "q": 1.3853718042373657,
+        "n_cal": 79,
+        "rank": 76,
+        "feasible": true,
+        "n_eval": 80,
+        "coverage": 1.0,
+        "eval_stat_max": 0.8979198932647705
+      },
+      "open": {
+        "q": 1.2618603706359863,
+        "n_cal": 79,
+        "rank": 76,
+        "feasible": true,
+        "n_eval": 80,
+        "coverage": 1.0,
+        "eval_stat_max": 0.45454463362693787
+      }
+    },
+    "p75": {
+      "closed": {
+        "q": 1.1292953491210938,
+        "n_cal": 79,
+        "rank": 76,
+        "feasible": true,
+        "n_eval": 80,
+        "coverage": 1.0,
+        "eval_stat_max": 0.5666843056678772
+      },
+      "open": {
+        "q": 0.99350506067276,
+        "n_cal": 79,
+        "rank": 76,
+        "feasible": true,
+        "n_eval": 80,
+        "coverage": 1.0,
+        "eval_stat_max": 0.2919694781303406
+      }
+    }
+  },
+  "escalation": {
+    "0.05": {
+      "closed": {
+        "lam": 0.09963857382535934,
+        "eval_rate": 0.06205222367413148,
+        "ep_rate_bound": 0.20473996050032917,
+        "bound_holds_on_eval": 0.9,
+        "feasible": true
+      },
+      "open": {
+        "lam": 0.10528132319450378,
+        "eval_rate": 0.036974411977114784,
+        "ep_rate_bound": 0.14627831715210357,
+        "bound_holds_on_eval": 0.95,
+        "feasible": true
+      }
+    },
+    "0.10": {
+      "closed": {
+        "lam": 0.08119324594736099,
+        "eval_rate": 0.11796512413824178,
+        "ep_rate_bound": 0.34980988593155893,
+        "bound_holds_on_eval": 0.9125,
+        "feasible": true
+      },
+      "open": {
+        "lam": 0.0796176865696907,
+        "eval_rate": 0.10664631272135996,
+        "ep_rate_bound": 0.2302469135802469,
+        "bound_holds_on_eval": 0.85,
+        "feasible": true
+      }
+    },
+    "0.20": {
+      "closed": {
+        "lam": 0.0694633275270462,
+        "eval_rate": 0.24505474699229488,
+        "ep_rate_bound": 0.5220035778175313,
+        "bound_holds_on_eval": 0.8625,
+        "feasible": true
+      },
+      "open": {
+        "lam": 0.06872440874576569,
+        "eval_rate": 0.24523332799979242,
+        "ep_rate_bound": 0.38246110325318244,
+        "bound_holds_on_eval": 0.8125,
+        "feasible": true
+      }
+    }
+  },
+  "arbitration": {
+    "0.05": {
+      "act_fraction": 0.04786623775334222,
+      "arbitrated": 0.09371178597211838,
+      "h1_vs_bcrnn_pct": 4.47613525390625,
+      "h2_vs_act_pct": 3.5307745933532715,
+      "gain_recovered_pct": 57.87722396850586
+    },
+    "0.10": {
+      "act_fraction": 0.1115623127071688,
+      "arbitrated": 0.09357478469610214,
+      "h1_vs_bcrnn_pct": 4.615785598754883,
+      "h2_vs_act_pct": 3.3794186115264893,
+      "gain_recovered_pct": 59.68292999267578
+    },
+    "0.20": {
+      "act_fraction": 0.2451557664787113,
+      "arbitrated": 0.09379980713129044,
+      "h1_vs_bcrnn_pct": 4.386412143707275,
+      "h2_vs_act_pct": 3.628018379211426,
+      "gain_recovered_pct": 56.71709060668945
+    }
+  },
+  "leading_indicator": {
+    "safety_violation_rate": 0.0,
+    "escalation_rate": 0.1115623127071688,
+    "passes": true
+  }
+}

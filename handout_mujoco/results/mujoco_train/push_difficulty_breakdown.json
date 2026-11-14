@@ -1,0 +1,106 @@
+{
+  "checkpoint": "results/mujoco_train/push_expert/seed0/best_model.zip",
+  "n_episodes": 200,
+  "eval_seeds": [
+    400000,
+    400199
+  ],
+  "overall_success": 0.95,
+  "overall_wilson_ci95": [
+    0.9104209437021562,
+    0.9726176509713551
+  ],
+  "d0_stats": {
+    "min": 0.051391296960936576,
+    "median": 0.15599410814443676,
+    "max": 0.3983715687382353
+  },
+  "quartiles": [
+    {
+      "quartile": 1,
+      "d0_range": [
+        0.051391296960936576,
+        0.11258365950665662
+      ],
+      "n": 50,
+      "success": 1.0,
+      "wilson_ci95": [
+        0.9286499658256813,
+        1.0
+      ],
+      "mean_ep_len": 4.88,
+      "frac_cube_fell": 0.0,
+      "mean_final_d_push": 0.036571269196560126
+    },
+    {
+      "quartile": 2,
+      "d0_range": [
+        0.11258365950665662,
+        0.15599410814443676
+      ],
+      "n": 50,
+      "success": 1.0,
+      "wilson_ci95": [
+        0.9286499658256813,
+        1.0
+      ],
+      "mean_ep_len": 5.8,
+      "frac_cube_fell": 0.0,
+      "mean_final_d_push": 0.03664115715841277
+    },
+    {
+      "quartile": 3,
+      "d0_range": [
+        0.15599410814443676,
+        0.21444676889002418
+      ],
+      "n": 50,
+      "success": 0.9,
+      "wilson_ci95": [
+        0.7863950966521162,
+        0.956524876008429
+      ],
+      "mean_ep_len": 8.76,
+      "frac_cube_fell": 0.08,
+      "mean_final_d_push": 0.07048194356100713
+    },
+    {
+      "quartile": 4,
+      "d0_range": [
+        0.21444676889002418,
+        0.3983715687382353
+      ],
+      "n": 50,
+      "success": 0.9,
+      "wilson_ci95": [
+        0.7863950966521162,
+        0.956524876008429
+      ],
+      "mean_ep_len": 14.46,
+      "frac_cube_fell": 0.02,
+      "mean_final_d_push": 0.068463391674556
+    }
+  ],
+  "point_biserial_corr_d0_vs_success": -0.2180261903831183,
+  "median_split": {
+    "easy": {
+      "n": 100,
+      "success": 1.0,
+      "wilson_ci95": [
+        0.9630051925239981,
+        0.9999999999999999
+      ],
+      "mean_ep_len": 5.34
+    },
+    "hard": {
+      "n": 100,
+      "success": 0.9,
+      "wilson_ci95": [
+        0.8256326956323347,
+        0.9447714583868639
+      ],
+      "mean_ep_len": 11.61
+    },
+    "easy_minus_hard": 0.09999999999999998
+  }
+}

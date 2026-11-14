@@ -1,0 +1,165 @@
+{
+  "n": 200,
+  "composed_success": 173,
+  "composed_success_rate": 0.865,
+  "wilson95": [
+    0.8107086158113437,
+    0.9055342957203134
+  ],
+  "product_of_subskill_rates": 0.96,
+  "subskill_rates": {
+    "reach": 1.0,
+    "slide": 0.96
+  },
+  "phaseA_success_rate": 1.0,
+  "fail_phase_counts": {
+    "reach": 0,
+    "slide": 27
+  },
+  "episode_len": {
+    "mean": 21.26,
+    "median": 16.0,
+    "max": 54
+  },
+  "phaseA_steps_median": 3.0,
+  "phaseB_steps_to_success_median": 12.0,
+  "boundary": {
+    "puck_displacement_in_phaseA": {
+      "median": 6.681017839582637e-05,
+      "p90": 0.000217958987923339,
+      "max": 0.0002645051572471857,
+      "frac_gt_1cm": 0.0
+    },
+    "puck_z_range": [
+      0.01480921171605587,
+      0.021764591336250305
+    ],
+    "puck_off_table_or_airborne": 0,
+    "puck_speed_at_boundary_p90": 0.009427123051136731,
+    "ee_z_range": [
+      0.020791281014680862,
+      0.2840677499771118
+    ],
+    "slide_success_given_puck_undisturbed": 0.865,
+    "slide_success_given_puck_disturbed": null,
+    "n_disturbed": 0
+  },
+  "example_boundaries": [
+    {
+      "t": 3,
+      "ee": [
+        0.09032239019870758,
+        0.1033053994178772,
+        0.2756197452545166
+      ],
+      "puck": [
+        0.1113780289888382,
+        0.04541690647602081,
+        0.014986072666943073
+      ],
+      "puck_displacement_in_phaseA": 7.388162339339033e-05,
+      "puck_z": 0.014986072666943073,
+      "puck_speed": 0.0005765906535089016,
+      "puck_goal_dist": 0.3632523715496063,
+      "puck_goal_dist_initial": 0.3628682792186737
+    },
+    {
+      "t": 3,
+      "ee": [
+        -0.06126411259174347,
+        -0.11761839687824249,
+        0.13196773827075958
+      ],
+      "puck": [
+        0.11637222021818161,
+        -0.12534168362617493,
+        0.014960160478949547
+      ],
+      "puck_displacement_in_phaseA": 0.00021577141887973994,
+      "puck_z": 0.014960160478949547,
+      "puck_speed": 0.0018073251703754067,
+      "puck_goal_dist": 0.33943942189216614,
+      "puck_goal_dist_initial": 0.3392243981361389
+    },
+    {
+      "t": 3,
+      "ee": [
+        -0.012032406404614449,
+        -0.11810383945703506,
+        0.2703295946121216
+      ],
+      "puck": [
+        -0.11348732560873032,
+        0.0010178688680753112,
+        0.014965207315981388
+      ],
+      "puck_displacement_in_phaseA": 0.0001746236957842484,
+      "puck_z": 0.014965207315981388,
+      "puck_speed": 0.0017302363412454724,
+      "puck_goal_dist": 0.5252323746681213,
+      "puck_goal_dist_initial": 0.5251803994178772
+    },
+    {
+      "t": 1,
+      "ee": [
+        0.031412284821271896,
+        -0.024219971150159836,
+        0.17219030857086182
+      ],
+      "puck": [
+        0.03879160434007645,
+        -0.10581368207931519,
+        0.021764591336250305
+      ],
+      "puck_displacement_in_phaseA": 0.0,
+      "puck_z": 0.021764591336250305,
+      "puck_speed": 0.39202597737312317,
+      "puck_goal_dist": 0.4580390155315399,
+      "puck_goal_dist_initial": 0.4579649865627289
+    },
+    {
+      "t": 3,
+      "ee": [
+        -0.036383386701345444,
+        -0.1046207994222641,
+        0.2512343227863312
+      ],
+      "puck": [
+        0.12182663381099701,
+        -0.1132715716958046,
+        0.014962633140385151
+      ],
+      "puck_displacement_in_phaseA": 0.00019624836568254977,
+      "puck_z": 0.014962633140385151,
+      "puck_speed": 0.0018078089924529195,
+      "puck_goal_dist": 0.1349862813949585,
+      "puck_goal_dist_initial": 0.13427984714508057
+    }
+  ],
+  "distribution_shift_test": {
+    "native_slide_success_same_seeds": 0.995,
+    "composed_success_same_seeds": 0.865,
+    "native_only_success": 27,
+    "composed_only_success": 1,
+    "mcnemar_exact_p": 2.1606683731079102e-07,
+    "ee_home": [
+      0.0384396701101811,
+      -2.194472194883551e-12,
+      0.19740014349589585
+    ],
+    "ee_shift_from_home_median": 0.13626889895173716,
+    "composed_success_by_ee_shift_tercile": [
+      1.0,
+      0.8939393939393939,
+      0.7014925373134329
+    ]
+  },
+  "frames": {
+    "file": "figures/phase_boundary_frames.png",
+    "seeds": [
+      130000,
+      130001,
+      130002
+    ]
+  }
+}

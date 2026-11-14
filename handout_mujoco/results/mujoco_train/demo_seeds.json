@@ -1,0 +1,39 @@
+{
+  "demo_seeds": [
+    400016,
+    400167,
+    400169
+  ],
+  "detail": [
+    {
+      "seed": 400016,
+      "cheap": false,
+      "arb": true,
+      "esc": 10,
+      "phase": 1,
+      "exp_pct": 47.05882352941176,
+      "calls": 1
+    },
+    {
+      "seed": 400167,
+      "cheap": false,
+      "arb": true,
+      "esc": 10,
+      "phase": 1,
+      "exp_pct": 60.71428571428571,
+      "calls": 1
+    },
+    {
+      "seed": 400169,
+      "cheap": false,
+      "arb": true,
+      "esc": 6,
+      "phase": 0,
+      "exp_pct": 70.58823529411765,
+      "calls": 1
+    }
+  ],
+  "n_rescues": 37,
+  "n_eval": 200,
+  "matched_rate_limitation": "A memoryless Bernoulli control plus the 8-step handback cannot be tuned to an arbitrary expert-step share: measured achievable points were 12.8% and 49.6% with nothing between, because one early escalation captures most of a ~15-step episode. The random control is therefore bracketed, not exactly matched."
+}

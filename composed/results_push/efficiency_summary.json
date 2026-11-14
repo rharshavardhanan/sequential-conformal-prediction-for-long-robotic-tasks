@@ -1,0 +1,100 @@
+{
+ "1_cheap": {
+  "success": 0.436,
+  "wilson95": [
+   0.3931856027916929,
+   0.47979031280266426
+  ],
+  "frac_exp_ep": 0.0,
+  "frac_exp_pooled": 0.0,
+  "len": 35.786,
+  "expert_calls_per_ep": 0.0
+ },
+ "2_expert": {
+  "success": 0.84,
+  "wilson95": [
+   0.8052918205426927,
+   0.8695236278622853
+  ],
+  "frac_exp_ep": 1.0,
+  "frac_exp_pooled": 1.0,
+  "len": 19.674,
+  "expert_calls_per_ep": 19.674
+ },
+ "3_arbitrated_a0.30": {
+  "success": 0.53,
+  "wilson95": [
+   0.48619059107952517,
+   0.57335194848562
+  ],
+  "frac_exp_ep": 0.12809050983544312,
+  "frac_exp_pooled": 0.0899496870781691,
+  "len": 32.596,
+  "expert_calls_per_ep": 2.9319999999999995
+ },
+ "4_random_a0.30": {
+  "success": 0.504,
+  "wilson95": [
+   0.46031215404813736,
+   0.5476268512272154
+  ],
+  "frac_exp_ep": 0.10910859967648262,
+  "frac_exp_pooled": 0.10317226767112,
+  "len": 33.982,
+  "expert_calls_per_ep": 3.506
+ },
+ "3_arbitrated_a0.20": {
+  "success": 0.494,
+  "wilson95": [
+   0.45039013057802346,
+   0.5377013615089477
+  ],
+  "frac_exp_ep": 0.077956898006494,
+  "frac_exp_pooled": 0.05133968178860827,
+  "len": 33.814,
+  "expert_calls_per_ep": 1.736
+ },
+ "4_random_a0.20": {
+  "success": 0.496,
+  "wilson95": [
+   0.4523731487727847,
+   0.5396878459518627
+  ],
+  "frac_exp_ep": 0.06806828834009832,
+  "frac_exp_pooled": 0.0674013921113689,
+  "len": 34.48,
+  "expert_calls_per_ep": 2.3239999999999994
+ },
+ "3_arbitrated_a0.40": {
+  "success": 0.554,
+  "wilson95": [
+   0.5101829624692411,
+   0.5969936087480201
+  ],
+  "frac_exp_ep": 0.1685984997219872,
+  "frac_exp_pooled": 0.12110091743119267,
+  "len": 31.61,
+  "expert_calls_per_ep": 3.8280000000000003
+ },
+ "4_random_a0.40": {
+  "success": 0.538,
+  "wilson95": [
+   0.4941768449383961,
+   0.5812437051774544
+  ],
+  "frac_exp_ep": 0.1708292807114903,
+  "frac_exp_pooled": 0.1687901953646402,
+  "len": 32.964,
+  "expert_calls_per_ep": 5.564
+ },
+ "inference_ms_median_cpu": {
+  "cheap_mlp": 0.08449999950244091,
+  "expert_reach": 0.31525000031251693,
+  "expert_push": 0.41355000121257035
+ },
+ "params": {
+  "cheap": 5891,
+  "expert_reach_actor": 5382,
+  "expert_push_actor": 541190
+ }
+}

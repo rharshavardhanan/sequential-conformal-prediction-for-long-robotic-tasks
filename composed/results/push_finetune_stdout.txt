@@ -1,0 +1,6 @@
+﻿start eval=0.78 (prefill done, 0.7 min)
+extra=50000 eval=0.76 best=0.78@0 (7 min)
+extra=100000 eval=0.72 best=0.78@0 (14 min)
+extra=150000 eval=0.76 best=0.78@0 (21 min)
+extra=200000 eval=0.77 best=0.78@0 (28 min)
+extra=250000 eval=0.75 best=0.78@0 (34 min)

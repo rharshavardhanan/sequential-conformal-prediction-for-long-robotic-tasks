@@ -1,0 +1,67 @@
+{
+  "task_id": 0,
+  "task": "put both the alphabet soup and the tomato sauce in the basket",
+  "n_eval": 20,
+  "results": [
+    {
+      "epoch": 5,
+      "checkpoint": "data/checkpoints/bcrnn_task0_ep005.pth",
+      "sha256": "941dcc569920bc5067783c1a7660bf38c08fa08f3287b9fa2765cbd11e0b6297",
+      "val_loss": -15.291739230685764,
+      "n_eval": 20,
+      "n_success": 0,
+      "success_rate": 0.0,
+      "ci95": 0.0,
+      "in_band_40_80": false,
+      "wall_sec": 236.34300958298263
+    },
+    {
+      "epoch": 10,
+      "checkpoint": "data/checkpoints/bcrnn_task0_ep010.pth",
+      "sha256": "a547ead97b0c492509067b256bc14b00de9c32965fc2d9d4cf8bfa5628ec141c",
+      "val_loss": -16.88428365919325,
+      "n_eval": 20,
+      "n_success": 0,
+      "success_rate": 0.0,
+      "ci95": 0.0,
+      "in_band_40_80": false,
+      "wall_sec": 246.96343879197957
+    },
+    {
+      "epoch": 14,
+      "checkpoint": "data/checkpoints/bcrnn_task0_ep014.pth",
+      "sha256": "7336f7f729ef43960ecd80dee3db17775f674c9ed26c7dc4da490c4ce84f5078",
+      "val_loss": -17.100315539042153,
+      "n_eval": 20,
+      "n_success": 0,
+      "success_rate": 0.0,
+      "ci95": 0.0,
+      "in_band_40_80": false,
+      "wall_sec": 238.29065304200049
+    },
+    {
+      "epoch": 15,
+      "checkpoint": "data/checkpoints/bcrnn_task0_ep015.pth",
+      "sha256": "a01aa1daf90a8411b4da24e63947b85b0e1e01df944c4c767ac26242d25b38cf",
+      "val_loss": -16.82285478379991,
+      "n_eval": 20,
+      "n_success": 0,
+      "success_rate": 0.0,
+      "ci95": 0.0,
+      "in_band_40_80": false,
+      "wall_sec": 241.56956624999293
+    },
+    {
+      "epoch": 20,
+      "checkpoint": "data/checkpoints/bcrnn_task0_ep020.pth",
+      "sha256": "4d300b8023c60c5e89dda81b6be7f77c2001227d890662d0df4ea9652defaf57",
+      "val_loss": -15.826164735688103,
+      "n_eval": 20,
+      "n_success": 1,
+      "success_rate": 0.05,
+      "ci95": 0.09551858457912785,
+      "in_band_40_80": false,
+      "wall_sec": 245.70967645800556
+    }
+  ]
+}

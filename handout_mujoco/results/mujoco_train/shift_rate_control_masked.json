@@ -1,0 +1,35 @@
+{
+  "variant": "regime feature EXCLUDED from the trigger (obs cols 21-23 zeroed)",
+  "exclusion_verified": "d0 recoverability R^2 drops 0.998 -> 0.395; PARTIAL, the trajectory state still leaks the goal",
+  "rows": [
+    {
+      "target": 0.2,
+      "fixed_rate": 0.7065217391304348,
+      "cp_rate": 0.17391304347826086,
+      "fixed_err": 0.5065217391304349,
+      "cp_err": 0.026086956521739146,
+      "carry_identical": true
+    },
+    {
+      "target": 0.3,
+      "fixed_rate": 0.782608695652174,
+      "cp_rate": 0.2608695652173913,
+      "fixed_err": 0.48260869565217396,
+      "cp_err": 0.03913043478260869,
+      "carry_identical": true
+    },
+    {
+      "target": 0.4,
+      "fixed_rate": 0.8478260869565217,
+      "cp_rate": 0.3804347826086957,
+      "fixed_err": 0.4478260869565217,
+      "cp_err": 0.019565217391304346,
+      "carry_identical": true
+    }
+  ],
+  "cp_mean_abs_err": 0.028260869565217395,
+  "fixed_mean_abs_err": 0.47898550724637684,
+  "gate_cp_passed": true,
+  "gate_fixed_drifts": true,
+  "n_eval_hard": 92
+}

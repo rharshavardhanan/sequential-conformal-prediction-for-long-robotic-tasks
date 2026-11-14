@@ -1,0 +1,47 @@
+{
+  "n_success": 109,
+  "n_fail": 41,
+  "alpha": 0.1,
+  "alpha_per_phase": 0.025,
+  "correction": "bonferroni",
+  "score": "err_norm",
+  "agg": "max",
+  "thresholds": {
+    "reach": 1.0335448265581662,
+    "grasp": 1.391722101475539,
+    "transport": 1.2899366950182263,
+    "release": 1.2247099060632787
+  },
+  "feasible": {
+    "reach": true,
+    "grasp": true,
+    "transport": true,
+    "release": true
+  },
+  "false_alarm_rate": 0.10714285714285714,
+  "detection_rate": 0.12195121951219512,
+  "median_lead_steps": 460.0,
+  "policy_sha256": "9aebea644351cb230bd525f8464e5704654a05133b38507909cbb737a210ff04",
+  "escalation_thresholds": {
+    "reach": 0.998578718870905,
+    "grasp": 1.2583170998729065,
+    "transport": 1.1015104318023776,
+    "release": 1.1315442077215916
+  },
+  "dwell_limits": {
+    "reach": 100.0,
+    "grasp": 10.0,
+    "transport": 71.0,
+    "release": 10.0
+  },
+  "alpha_esc": 0.3,
+  "beta": 0.1,
+  "cal_frac": 0.75,
+  "seed": 0,
+  "flat_threshold": 1.2610433560306995,
+  "flat_feasible": true,
+  "phase_window": 5,
+  "motion_floor_abs": 0.0017320508075688774,
+  "n_cal": 81,
+  "command": ".venv-lerobot/bin/python -m scripts.cp_monitor --rollouts data/rollouts/task1_v10.hdf5 --alpha 0.1 --cal-frac 0.75 --alpha-esc 0.3 --beta 0.1 --out data/results/demo_task1.json"
+}

@@ -1,0 +1,160 @@
+{
+  "score": "b_ensemble_disagreement",
+  "statistic": "max ensemble disagreement over the PUSH phase, per episode",
+  "regime_definition": "d0 = ||cube - task_goal|| at reset, split at the calibration median. Geometry only -- no outcome enters the split.",
+  "median_d0": 0.15809564543496601,
+  "n_reps": 60,
+  "n_cal_per_regime": 250,
+  "counts": {
+    "cal_easy": 499,
+    "cal_hard": 498,
+    "eval_easy": 107,
+    "eval_hard": 92
+  },
+  "arms": [
+    {
+      "method": "fixed",
+      "cal_regime": "EASY",
+      "test_regime": "HARD",
+      "target_rate": 0.2,
+      "actual_rate_mean": 0.7748188405797101,
+      "actual_rate_sd": 0.014729720322719974,
+      "abs_error_of_mean": 0.5748188405797101,
+      "abs_error_mean": 0.5748188405797101,
+      "nominal_success_on_test": 0.48913043478260876
+    },
+    {
+      "method": "cp_recal",
+      "cal_regime": "HARD",
+      "test_regime": "HARD",
+      "target_rate": 0.2,
+      "actual_rate_mean": 0.2731884057971015,
+      "actual_rate_sd": 0.017801621009475726,
+      "abs_error_of_mean": 0.07318840579710151,
+      "abs_error_mean": 0.07333333333333332,
+      "nominal_success_on_test": 0.48913043478260876
+    },
+    {
+      "method": "cp_carry",
+      "cal_regime": "EASY",
+      "test_regime": "HARD",
+      "target_rate": 0.2,
+      "actual_rate_mean": 0.7748188405797101,
+      "actual_rate_sd": 0.014729720322719974,
+      "abs_error_of_mean": 0.5748188405797101,
+      "abs_error_mean": 0.5748188405797101,
+      "nominal_success_on_test": 0.48913043478260876
+    },
+    {
+      "method": "random",
+      "cal_regime": "n/a (matched rate)",
+      "test_regime": "HARD",
+      "target_rate": 0.2,
+      "actual_rate_mean": 0.266304347826087,
+      "actual_rate_sd": 0.05157796723867518,
+      "abs_error_of_mean": 0.06630434782608696,
+      "abs_error_mean": 0.07028985507246376,
+      "nominal_success_on_test": 0.48913043478260876
+    },
+    {
+      "method": "fixed",
+      "cal_regime": "EASY",
+      "test_regime": "HARD",
+      "target_rate": 0.3,
+      "actual_rate_mean": 0.8159420289855074,
+      "actual_rate_sd": 0.010286282294622024,
+      "abs_error_of_mean": 0.5159420289855075,
+      "abs_error_mean": 0.5159420289855071,
+      "nominal_success_on_test": 0.48913043478260876
+    },
+    {
+      "method": "cp_recal",
+      "cal_regime": "HARD",
+      "test_regime": "HARD",
+      "target_rate": 0.3,
+      "actual_rate_mean": 0.3465579710144927,
+      "actual_rate_sd": 0.020536639712436622,
+      "abs_error_of_mean": 0.046557971014492716,
+      "abs_error_mean": 0.04655797101449277,
+      "nominal_success_on_test": 0.48913043478260876
+    },
+    {
+      "method": "cp_carry",
+      "cal_regime": "EASY",
+      "test_regime": "HARD",
+      "target_rate": 0.3,
+      "actual_rate_mean": 0.8159420289855074,
+      "actual_rate_sd": 0.010286282294622024,
+      "abs_error_of_mean": 0.5159420289855075,
+      "abs_error_mean": 0.5159420289855071,
+      "nominal_success_on_test": 0.48913043478260876
+    },
+    {
+      "method": "random",
+      "cal_regime": "n/a (matched rate)",
+      "test_regime": "HARD",
+      "target_rate": 0.3,
+      "actual_rate_mean": 0.3423913043478261,
+      "actual_rate_sd": 0.04544899576592496,
+      "abs_error_of_mean": 0.04239130434782612,
+      "abs_error_mean": 0.05166666666666667,
+      "nominal_success_on_test": 0.48913043478260876
+    },
+    {
+      "method": "fixed",
+      "cal_regime": "EASY",
+      "test_regime": "HARD",
+      "target_rate": 0.4,
+      "actual_rate_mean": 0.8856884057971013,
+      "actual_rate_sd": 0.021234326169094507,
+      "abs_error_of_mean": 0.48568840579710126,
+      "abs_error_mean": 0.4856884057971015,
+      "nominal_success_on_test": 0.48913043478260876
+    },
+    {
+      "method": "cp_recal",
+      "cal_regime": "HARD",
+      "test_regime": "HARD",
+      "target_rate": 0.4,
+      "actual_rate_mean": 0.4226449275362319,
+      "actual_rate_sd": 0.01625495739740951,
+      "abs_error_of_mean": 0.022644927536231874,
+      "abs_error_mean": 0.025108695652173885,
+      "nominal_success_on_test": 0.48913043478260876
+    },
+    {
+      "method": "cp_carry",
+      "cal_regime": "EASY",
+      "test_regime": "HARD",
+      "target_rate": 0.4,
+      "actual_rate_mean": 0.8856884057971013,
+      "actual_rate_sd": 0.021234326169094507,
+      "abs_error_of_mean": 0.48568840579710126,
+      "abs_error_mean": 0.4856884057971015,
+      "nominal_success_on_test": 0.48913043478260876
+    },
+    {
+      "method": "random",
+      "cal_regime": "n/a (matched rate)",
+      "test_regime": "HARD",
+      "target_rate": 0.4,
+      "actual_rate_mean": 0.423731884057971,
+      "actual_rate_sd": 0.061631222890274055,
+      "abs_error_of_mean": 0.023731884057970998,
+      "abs_error_mean": 0.053731884057971004,
+      "nominal_success_on_test": 0.48913043478260876
+    }
+  ],
+  "cp_mean_abs_rate_error": 0.04746376811594203,
+  "fixed_mean_abs_rate_error": 0.5254830917874397,
+  "cp_mean_abs_rate_error_per_rep": 0.04833333333333332,
+  "fixed_mean_abs_rate_error_per_rep": 0.5254830917874395,
+  "sampling_floor_at_n_test": 0.03739713768115941,
+  "n_test_episodes": 92,
+  "estimator_note": "The gate uses |mean realised rate - target| (bias). The per-rep mean|err| is also reported; it can never fall below the binomial sampling floor of 0.037 at n=92, so it measures test-set size as much as threshold quality.",
+  "control_identity_cp_carry_equals_fixed": true,
+  "gate": "CP mean |actual - target| < 5 pp AND fixed threshold > 15 pp",
+  "gate_cp_passed": true,
+  "gate_fixed_drifts": true,
+  "framing": "This is budget compliance, not success. The drifted fixed threshold will often score HIGHER on success precisely because it fires more than it was authorised to -- it spends compute it was not given."
+}

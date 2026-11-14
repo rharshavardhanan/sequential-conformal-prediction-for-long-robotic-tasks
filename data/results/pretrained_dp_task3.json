@@ -1,0 +1,13 @@
+{
+  "repo": "yzembodied/libeo10_task3_diffusion",
+  "task_id": 3,
+  "task": "put the black bowl in the bottom drawer of the cabinet and close it",
+  "n_eval": 20,
+  "n_success": 19,
+  "success_rate": 0.95,
+  "ci95": 0.09551858457912789,
+  "in_band_40_80": false,
+  "mean_rollout_sec": 51.57816653964983,
+  "flip_images": true,
+  "device": "mps"
+}

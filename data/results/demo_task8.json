@@ -1,0 +1,47 @@
+{
+  "n_success": 128,
+  "n_fail": 22,
+  "alpha": 0.1,
+  "alpha_per_phase": 0.025,
+  "correction": "bonferroni",
+  "score": "err_norm",
+  "agg": "max",
+  "thresholds": {
+    "reach": 1.1473424106322883,
+    "grasp": 1.202962135756868,
+    "transport": 1.9985007133537724,
+    "release": 1.1679165249178554
+  },
+  "feasible": {
+    "reach": true,
+    "grasp": true,
+    "transport": true,
+    "release": true
+  },
+  "false_alarm_rate": 0.06666666666666667,
+  "detection_rate": 0.45454545454545453,
+  "median_lead_steps": 265.0,
+  "policy_sha256": "54e8928b439a5a3ebffaf4b1f1bdca1efa7552c8256a0c9e0581c0ee1a508b02",
+  "escalation_thresholds": {
+    "reach": 1.1102164271511765,
+    "grasp": 1.1163338359441628,
+    "transport": 1.292879696770619,
+    "release": 1.1025930099233374
+  },
+  "dwell_limits": {
+    "reach": 130.0,
+    "grasp": 10.0,
+    "transport": 97.0,
+    "release": 10.0
+  },
+  "alpha_esc": 0.3,
+  "beta": 0.1,
+  "cal_frac": 0.65,
+  "seed": 0,
+  "flat_threshold": 1.2869286660676302,
+  "flat_feasible": true,
+  "phase_window": 5,
+  "motion_floor_abs": 0.0017320508075688774,
+  "n_cal": 83,
+  "command": ".venv-lerobot/bin/python -m scripts.cp_monitor --rollouts data/rollouts/task8_v10.hdf5 --alpha 0.1 --cal-frac 0.65 --alpha-esc 0.3 --beta 0.1 --out data/results/demo_task8.json"
+}

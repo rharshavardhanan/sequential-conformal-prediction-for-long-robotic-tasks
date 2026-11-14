@@ -1,0 +1,349 @@
+{
+  "protocol": "PART 3 -- horizon diagnostic + rescue curve on the composed task, BEFORE any calibration.\n\nPre-registered gates (written before running):\n\n  Rescue curve: 100 seeds on which the cheap policy fails (first 100 failures among the 500\n  horizon-diagnostic episodes, seeds 160000..).  Expert pair (unmodified) takes permanent\n  control from step t, t in {0, 5, ..., 95}; phase budgets unchanged.  R(t) = success rate.\n\n  Per-seed irreversibility step tau_irr = first grid t at which handover no longer rescues,\n  over seeds rescued at t=0 (never-failing seeds censored at 100).\n\n  G3.1 (horizon): PASS iff median(tau_irr) > 15 (15% of the 100-step horizon)\n                  AND IQR(tau_irr) >= 10 steps.\n  G3.2 (rescue):  with D = R(0) - R(95):\n                  R(0) >= 0.8 x composed-expert rate (slide: 0.70; push: computed from part2_compose.json;\n                        a flat 0.80 would test the expert, not the window)\n                  AND D >= 0.30\n                  AND the largest drop between consecutive grid points <= 0.5 * D\n                  AND >= 3 grid points with t >= 10 inside the middle band\n                      [R(95) + 0.25 D, R(0) - 0.25 D].\n                  (Round 1's curve 0.96/0.60/0.63/.../0.50 fails: one 0.36 drop of D=0.46.)\n  Proceed to calibration/benchmark only if BOTH pass.\n",
+  "cheap_budget": 2000,
+  "horizon_diagnostic": {
+    "n": 500,
+    "cheap_success_rate": 0.426,
+    "wilson95": [
+      0.38338257803751286,
+      0.4697458243684626
+    ],
+    "phaseA_success_rate": 0.974,
+    "first_success_step_phaseA": {
+      "n": 487,
+      "mean": 2.8747433264887063,
+      "median": 3.0,
+      "p10": 2.0,
+      "p90": 4.0,
+      "min": 1.0,
+      "max": 27.0
+    },
+    "episode_success_step": {
+      "n": 213,
+      "mean": 15.234741784037558,
+      "median": 13.0,
+      "p10": 4.0,
+      "p90": 31.0,
+      "min": 2.0,
+      "max": 52.0
+    },
+    "phaseB_steps_to_success": {
+      "n": 213,
+      "mean": 12.347417840375586,
+      "median": 10.0,
+      "p10": 1.0,
+      "p90": 28.0,
+      "min": 1.0,
+      "max": 48.0
+    },
+    "failure_terminal_step": {
+      "n": 287,
+      "mean": 52.73519163763066,
+      "median": 53.0,
+      "p10": 51.0,
+      "p90": 54.0,
+      "min": 50.0,
+      "max": 68.0
+    },
+    "failure_phase_counts": {
+      "reach": 13,
+      "push": 274
+    },
+    "episode_length_all": {
+      "n": 500,
+      "mean": 36.76,
+      "median": 52.0,
+      "p10": 7.900000000000006,
+      "p90": 54.0,
+      "min": 2.0,
+      "max": 68.0
+    }
+  },
+  "rescue_pool_seeds": [
+    160001,
+    160002,
+    160003,
+    160008,
+    160009,
+    160012,
+    160013,
+    160016,
+    160017,
+    160018,
+    160019,
+    160020,
+    160021,
+    160022,
+    160023,
+    160024,
+    160025,
+    160026,
+    160027,
+    160028,
+    160031,
+    160032,
+    160033,
+    160034,
+    160035,
+    160036,
+    160037,
+    160042,
+    160045,
+    160046,
+    160047,
+    160049,
+    160051,
+    160052,
+    160054,
+    160056,
+    160059,
+    160060,
+    160062,
+    160063,
+    160064,
+    160065,
+    160066,
+    160067,
+    160068,
+    160069,
+    160072,
+    160073,
+    160075,
+    160076,
+    160077,
+    160078,
+    160080,
+    160081,
+    160083,
+    160084,
+    160087,
+    160088,
+    160089,
+    160092,
+    160093,
+    160098,
+    160099,
+    160100,
+    160101,
+    160105,
+    160107,
+    160110,
+    160112,
+    160113,
+    160115,
+    160118,
+    160121,
+    160122,
+    160125,
+    160126,
+    160127,
+    160129,
+    160134,
+    160135,
+    160136,
+    160139,
+    160140,
+    160142,
+    160143,
+    160145,
+    160146,
+    160149,
+    160150,
+    160154,
+    160159,
+    160161,
+    160162,
+    160165,
+    160166,
+    160168,
+    160169,
+    160171,
+    160173,
+    160176
+  ],
+  "rescue_curve": {
+    "0": {
+      "rate": 0.78,
+      "wilson95": [
+        0.6892964640723263,
+        0.8499871766170359
+      ]
+    },
+    "5": {
+      "rate": 0.67,
+      "wilson95": [
+        0.5730534371634074,
+        0.754368773255134
+      ]
+    },
+    "10": {
+      "rate": 0.72,
+      "wilson95": [
+        0.6251197121124493,
+        0.7986031484291923
+      ]
+    },
+    "15": {
+      "rate": 0.57,
+      "wilson95": [
+        0.4721538947286719,
+        0.6626670154436687
+      ]
+    },
+    "20": {
+      "rate": 0.48,
+      "wilson95": [
+        0.3846455168617764,
+        0.5768342230889836
+      ]
+    },
+    "25": {
+      "rate": 0.46,
+      "wilson95": [
+        0.3656080823843,
+        0.5573513975172198
+      ]
+    },
+    "30": {
+      "rate": 0.37,
+      "wilson95": [
+        0.2818236047080924,
+        0.4677947049718467
+      ]
+    },
+    "35": {
+      "rate": 0.31,
+      "wilson95": [
+        0.22779697154852568,
+        0.4062605579836929
+      ]
+    },
+    "40": {
+      "rate": 0.32,
+      "wilson95": [
+        0.23669147266401064,
+        0.4166261868928281
+      ]
+    },
+    "45": {
+      "rate": 0.18,
+      "wilson95": [
+        0.11700225458662546,
+        0.2666735846255322
+      ]
+    },
+    "50": {
+      "rate": 0.03,
+      "wilson95": [
+        0.010254523944281516,
+        0.08451936489857499
+      ]
+    },
+    "55": {
+      "rate": 0.0,
+      "wilson95": [
+        0.0,
+        0.03699349876899627
+      ]
+    },
+    "60": {
+      "rate": 0.0,
+      "wilson95": [
+        0.0,
+        0.03699349876899627
+      ]
+    },
+    "65": {
+      "rate": 0.0,
+      "wilson95": [
+        0.0,
+        0.03699349876899627
+      ]
+    },
+    "70": {
+      "rate": 0.0,
+      "wilson95": [
+        0.0,
+        0.03699349876899627
+      ]
+    },
+    "75": {
+      "rate": 0.0,
+      "wilson95": [
+        0.0,
+        0.03699349876899627
+      ]
+    },
+    "80": {
+      "rate": 0.0,
+      "wilson95": [
+        0.0,
+        0.03699349876899627
+      ]
+    },
+    "85": {
+      "rate": 0.0,
+      "wilson95": [
+        0.0,
+        0.03699349876899627
+      ]
+    },
+    "90": {
+      "rate": 0.0,
+      "wilson95": [
+        0.0,
+        0.03699349876899627
+      ]
+    },
+    "95": {
+      "rate": 0.0,
+      "wilson95": [
+        0.0,
+        0.03699349876899627
+      ]
+    }
+  },
+  "G3_1": {
+    "tau_irr": {
+      "n": 78,
+      "mean": 17.82051282051282,
+      "median": 15.0,
+      "p10": 5.0,
+      "p90": 35.0,
+      "min": 5.0,
+      "max": 50.0
+    },
+    "tau_irr_iqr": 20.0,
+    "n_rescued_at_t0": 78,
+    "frac_non_monotone_seeds": 0.66,
+    "pass": false
+  },
+  "G3_2": {
+    "R0": 0.78,
+    "R95": 0.0,
+    "D": 0.78,
+    "max_consecutive_drop": 0.15000000000000002,
+    "max_drop_at": "10->15",
+    "middle_band": [
+      0.195,
+      0.585
+    ],
+    "middle_points_t>=10": [
+      15,
+      20,
+      25,
+      30,
+      35,
+      40
+    ],
+    "R0_min": 0.71,
+    "checks": {
+      "R0>=R0_min": true,
+      "D>=0.30": true,
+      "max_drop<=0.5D": true,
+      ">=3 middle points": true
+    },
+    "pass": true
+  },
+  "proceed_to_part4": false
+}

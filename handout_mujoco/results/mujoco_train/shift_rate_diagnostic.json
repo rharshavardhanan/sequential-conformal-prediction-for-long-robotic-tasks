@@ -1,0 +1,34 @@
+{
+  "rows": [
+    {
+      "target": 0.2,
+      "unlabelled_rate": 0.2717391304347826,
+      "labelled_rate": 0.4673913043478261,
+      "err_unlabelled": 0.07173913043478258,
+      "err_labelled": 0.2673913043478261,
+      "irreducible_noise_at_n": 0.03321554347826087
+    },
+    {
+      "target": 0.3,
+      "unlabelled_rate": 0.34782608695652173,
+      "labelled_rate": 0.5869565217391305,
+      "err_unlabelled": 0.04782608695652174,
+      "err_labelled": 0.2869565217391305,
+      "irreducible_noise_at_n": 0.0380463043478261
+    },
+    {
+      "target": 0.4,
+      "unlabelled_rate": 0.42391304347826086,
+      "labelled_rate": 0.6956521739130435,
+      "err_unlabelled": 0.023913043478260843,
+      "err_labelled": 0.29565217391304344,
+      "irreducible_noise_at_n": 0.04088684782608695
+    }
+  ],
+  "mean_err_unlabelled": 0.04782608695652172,
+  "mean_err_labelled": 0.2833333333333333,
+  "sampling_floor": 0.03738289855072464,
+  "n_eval_hard": 92,
+  "cal_hard_failure_rate": 0.4919678714859438,
+  "eval_hard_failure_rate": 0.5108695652173914
+}

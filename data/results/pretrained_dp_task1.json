@@ -1,0 +1,13 @@
+{
+  "repo": "yzembodied/libero10_task1_diffusion",
+  "task_id": 1,
+  "task": "put both the cream cheese box and the butter in the basket",
+  "n_eval": 20,
+  "n_success": 12,
+  "success_rate": 0.6,
+  "ci95": 0.2147072425420251,
+  "in_band_40_80": true,
+  "mean_rollout_sec": 92.5381402291996,
+  "flip_images": true,
+  "device": "mps"
+}

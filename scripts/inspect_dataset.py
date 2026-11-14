@@ -36,7 +36,7 @@ def main():
     )
     ap.add_argument("--demo", type=int, default=0)
     ap.add_argument("--frames", type=int, default=0, help="how many PNGs to export")
-    ap.add_argument("--outdir", default="dataset_preview")
+    ap.add_argument("--outdir", default="data/dataset_preview")
     args = ap.parse_args()
 
     from libero.libero import get_libero_path

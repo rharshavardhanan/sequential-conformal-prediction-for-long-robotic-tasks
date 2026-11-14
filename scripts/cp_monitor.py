@@ -23,6 +23,7 @@ Two things this gets right that a naive implementation does not.
 
 import argparse
 import json
+import sys
 
 import numpy as np
 
@@ -55,18 +56,55 @@ def load(path, score_key):
                     "success": bool(g.attrs["success"]),
                     "score": g[score_key][:],
                     "labels": labels,
+                    "motion_mask": g["motion_mask"][:] if "motion_mask" in g else None,
+                    "split": g.attrs.get("split"),
                 }
             )
     return rollouts, meta
 
 
-def phase_max(r):
-    """Max score within each phase; nan where the phase never occurs."""
+AGGS = {
+    "max": lambda v: v.max(),
+    "p95": lambda v: np.percentile(v, 95),
+    "p90": lambda v: np.percentile(v, 90),
+    "p75": lambda v: np.percentile(v, 75),
+    "mean": lambda v: v.mean(),
+}
+
+
+def phase_agg(r, how="max", use_mask=True):
+    """D.10 aggregation per phase; nan where the phase never occurs.
+
+    D.9: low-motion steps are excluded from SCORING via the stored mask, but they
+    are never dropped from the data -- they are the stall signature.
+    """
+    fn = AGGS[how]
     out = np.full(len(PHASES), np.nan)
     for p, i in PHASE_ID.items():
         m = r["labels"] == i
+        if use_mask and r.get("motion_mask") is not None:
+            m = m & r["motion_mask"]
         if m.any():
-            out[i] = r["score"][m].max()
+            out[i] = fn(r["score"][m])
+    return out
+
+
+def dwell_maxima(r):
+    """Longest contiguous run of each phase in one rollout; nan where absent.
+
+    Calibrated the same way the deviation score is: the per-ROLLOUT maximum, not
+    pooled per-segment durations. A rollout holds several segments per phase, so a
+    per-segment quantile is not a per-rollout bound -- measured, it fires on 47%
+    of successful rollouts at beta=0.10.
+    """
+    lab = np.asarray(r["labels"])
+    out = np.full(len(PHASES), np.nan)
+    if len(lab) == 0:
+        return out
+    edges = np.flatnonzero(np.diff(lab)) + 1
+    for start, end in zip(np.r_[0, edges], np.r_[edges, len(lab)]):
+        i = int(lab[start])
+        out[i] = end - start if np.isnan(out[i]) else max(out[i], end - start)
     return out
 
 
@@ -84,6 +122,16 @@ def main():
         action="store_true",
         help="also report the naive per-step monitor, for contrast",
     )
+    ap.add_argument("--agg", choices=list(AGGS), default="max",
+                    help="D.10: per-phase aggregation. Default max until the "
+                         "held-out comparison replicates on unseen data.")
+    ap.add_argument("--no-mask", action="store_true",
+                    help="ignore the stored motion mask when scoring")
+    ap.add_argument("--alpha-esc", type=float, default=0.3,
+                    help="risk budget for the escalation threshold; must exceed "
+                         "--alpha so q_esc < q_safe and escalation precedes violation")
+    ap.add_argument("--beta", type=float, default=0.1,
+                    help="stall risk budget, separate from alpha (D.10)")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--out", default=None)
     args = ap.parse_args()
@@ -93,7 +141,7 @@ def main():
     fail = [r for r in rollouts if not r["success"]]
     print(f"loaded {len(rollouts)} rollouts: {len(succ)} success, {len(fail)} failure")
     print(f"policy sha256: {str(meta.get('policy_sha256'))[:16]}...")
-    print(f"score: {args.score}   alpha: {args.alpha}   correction: {args.correction}")
+    print(f"score: {args.score}   agg: {args.agg}   alpha: {args.alpha}   correction: {args.correction}")
 
     if len(succ) < 2 or not fail:
         print("\nneed >=2 successes and >=1 failure; collect more rollouts")
@@ -116,7 +164,7 @@ def main():
         f"calibration rollouts per phase\n"
     )
 
-    cal_max = np.array([phase_max(r) for r in cal])
+    cal_max = np.array([phase_agg(r, args.agg, not args.no_mask) for r in cal])
     print(f"{'phase':11s} {'n_cal':>6s} {'rank':>5s} {'threshold':>11s}  feasible")
     thresholds = np.full(len(PHASES), np.inf)
     feasible = {}
@@ -138,8 +186,55 @@ def main():
         print("    coverage while doing nothing. Collect more, raise alpha, or")
         print("    drop the Bonferroni correction.")
 
+    if args.alpha_esc <= args.alpha:
+        raise SystemExit(f"[abort] --alpha-esc ({args.alpha_esc}) must exceed --alpha "
+                         f"({args.alpha}); otherwise q_esc >= q_safe and escalation "
+                         f"cannot precede violation")
+
+    alpha_esc_p = (args.alpha_esc / len(PHASES)
+                   if args.correction == "bonferroni" else args.alpha_esc)
+    beta_p = args.beta / len(PHASES) if args.correction == "bonferroni" else args.beta
+
+    esc = np.full(len(PHASES), np.inf)
+    for p, i in PHASE_ID.items():
+        s = cal_max[:, i]
+        esc[i] = conformal_quantile(s[~np.isnan(s)], alpha_esc_p)[0]
+
+    # FLAT CP: the same calibration with K=1 -- one threshold over the whole
+    # episode, per-rollout max of every scorable step, no Bonferroni because
+    # there is only one test. This is the baseline the per-phase thresholds are
+    # meant to beat, and it is computed here so the viewer can display both
+    # without ever recalibrating at demo time.
+    flat_cal = np.array([r["score"][r["motion_mask"]].max()
+                         if r.get("motion_mask") is not None else r["score"].max()
+                         for r in cal])
+    q_flat, _, flat_ok = conformal_quantile(flat_cal, args.alpha)
+
+    cal_dwell = np.array([dwell_maxima(r) for r in cal])
+    dwell = np.full(len(PHASES), np.inf)
+    for p, i in PHASE_ID.items():
+        s = cal_dwell[:, i]
+        dwell[i] = conformal_quantile(s[~np.isnan(s)], beta_p)[0]
+
+    print(f"\n{'phase':11s} {'q_esc':>11s} {'q_safe':>11s} {'d_hat':>9s}")
+    for p, i in PHASE_ID.items():
+        print(f"{p:11s} {esc[i]:11.4f} {thresholds[i]:11.4f} {dwell[i]:9.1f}")
+    print(f"\nflat CP (K=1, one threshold for the whole episode): {q_flat:.4f}")
+    print("note: grasp/release dwell is structurally 10 (the +/-5 window), so those")
+    print("      two phases can never fire STUCK_TIMEOUT -- reach/transport only.")
+
     def first_alarm(r):
+        """First scorable timestep exceeding this phase's threshold.
+
+        The motion mask is applied HERE as well as in calibration. Calibrating
+        with the mask and evaluating without it lets a low-motion step (mean
+        err_norm 0.99, max 2.78 -- the extreme tail) raise an alarm calibration
+        never saw.
+        """
+        mask = r.get("motion_mask")
         for t in range(len(r["score"])):
+            if mask is not None and not mask[t]:
+                continue
             if r["score"][t] > thresholds[r["labels"][t]]:
                 return t
         return None
@@ -183,7 +278,7 @@ def main():
         "alpha": args.alpha,
         "alpha_per_phase": alpha_p,
         "correction": args.correction,
-        "score": args.score,
+        "score": args.score, "agg": args.agg,
         "thresholds": dict(zip(PHASES, thresholds.tolist())),
         "feasible": feasible,
         "false_alarm_rate": far,
@@ -191,6 +286,19 @@ def main():
         "median_lead_steps": float(np.median(lead)) if lead else None,
         "policy_sha256": str(meta.get("policy_sha256")),
     }
+    res.update({
+        "escalation_thresholds": dict(zip(PHASES, esc.tolist())),
+        "dwell_limits": dict(zip(PHASES, dwell.tolist())),
+        "alpha_esc": args.alpha_esc, "beta": args.beta,
+        "cal_frac": args.cal_frac, "seed": args.seed,
+        "flat_threshold": float(q_flat),
+        "flat_feasible": bool(flat_ok),
+        "phase_window": 5,
+        "motion_floor_abs": float(meta.get("motion_floor_abs", 0.0017320508075688774)),
+        "n_cal": len(cal),
+        "command": " ".join([".venv-lerobot/bin/python", "-m", "scripts.cp_monitor"]
+                            + sys.argv[1:]),
+    })
     if args.out:
         json.dump(res, open(args.out, "w"), indent=2)
         print(f"\nwrote {args.out}")

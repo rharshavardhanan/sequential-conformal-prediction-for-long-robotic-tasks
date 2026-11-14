@@ -1,0 +1,271 @@
+{
+  "n_heldout": 250,
+  "cheap": 0.448,
+  "expert": 0.844,
+  "rescuable": 0.432,
+  "spoilable": 0.036,
+  "oracle_ceiling": 0.88,
+  "frontiers": {
+    "predict cheap failure": [
+      {
+        "rate": 0.0,
+        "success": 0.448,
+        "n_escalated": 0
+      },
+      {
+        "rate": 0.048,
+        "success": 0.472,
+        "n_escalated": 12
+      },
+      {
+        "rate": 0.1,
+        "success": 0.508,
+        "n_escalated": 25
+      },
+      {
+        "rate": 0.152,
+        "success": 0.532,
+        "n_escalated": 38
+      },
+      {
+        "rate": 0.2,
+        "success": 0.552,
+        "n_escalated": 50
+      },
+      {
+        "rate": 0.3,
+        "success": 0.608,
+        "n_escalated": 75
+      },
+      {
+        "rate": 0.4,
+        "success": 0.66,
+        "n_escalated": 100
+      },
+      {
+        "rate": 0.5,
+        "success": 0.712,
+        "n_escalated": 125
+      },
+      {
+        "rate": 0.752,
+        "success": 0.816,
+        "n_escalated": 188
+      },
+      {
+        "rate": 1.0,
+        "success": 0.844,
+        "n_escalated": 250
+      }
+    ],
+    "predict rescuable": [
+      {
+        "rate": 0.0,
+        "success": 0.448,
+        "n_escalated": 0
+      },
+      {
+        "rate": 0.048,
+        "success": 0.472,
+        "n_escalated": 12
+      },
+      {
+        "rate": 0.1,
+        "success": 0.504,
+        "n_escalated": 25
+      },
+      {
+        "rate": 0.152,
+        "success": 0.536,
+        "n_escalated": 38
+      },
+      {
+        "rate": 0.2,
+        "success": 0.548,
+        "n_escalated": 50
+      },
+      {
+        "rate": 0.3,
+        "success": 0.596,
+        "n_escalated": 75
+      },
+      {
+        "rate": 0.4,
+        "success": 0.66,
+        "n_escalated": 100
+      },
+      {
+        "rate": 0.5,
+        "success": 0.696,
+        "n_escalated": 125
+      },
+      {
+        "rate": 0.752,
+        "success": 0.8,
+        "n_escalated": 188
+      },
+      {
+        "rate": 1.0,
+        "success": 0.844,
+        "n_escalated": 250
+      }
+    ],
+    "cube-goal distance alone": [
+      {
+        "rate": 0.0,
+        "success": 0.448,
+        "n_escalated": 0
+      },
+      {
+        "rate": 0.048,
+        "success": 0.48,
+        "n_escalated": 12
+      },
+      {
+        "rate": 0.1,
+        "success": 0.516,
+        "n_escalated": 25
+      },
+      {
+        "rate": 0.152,
+        "success": 0.544,
+        "n_escalated": 38
+      },
+      {
+        "rate": 0.2,
+        "success": 0.564,
+        "n_escalated": 50
+      },
+      {
+        "rate": 0.3,
+        "success": 0.592,
+        "n_escalated": 75
+      },
+      {
+        "rate": 0.4,
+        "success": 0.656,
+        "n_escalated": 100
+      },
+      {
+        "rate": 0.5,
+        "success": 0.696,
+        "n_escalated": 125
+      },
+      {
+        "rate": 0.752,
+        "success": 0.804,
+        "n_escalated": 188
+      },
+      {
+        "rate": 1.0,
+        "success": 0.844,
+        "n_escalated": 250
+      }
+    ],
+    "random": [
+      {
+        "rate": 0.0,
+        "success": 0.448,
+        "n_escalated": 0
+      },
+      {
+        "rate": 0.048,
+        "success": 0.468,
+        "n_escalated": 12
+      },
+      {
+        "rate": 0.1,
+        "success": 0.488,
+        "n_escalated": 25
+      },
+      {
+        "rate": 0.152,
+        "success": 0.516,
+        "n_escalated": 38
+      },
+      {
+        "rate": 0.2,
+        "success": 0.536,
+        "n_escalated": 50
+      },
+      {
+        "rate": 0.3,
+        "success": 0.56,
+        "n_escalated": 75
+      },
+      {
+        "rate": 0.4,
+        "success": 0.612,
+        "n_escalated": 100
+      },
+      {
+        "rate": 0.5,
+        "success": 0.664,
+        "n_escalated": 125
+      },
+      {
+        "rate": 0.752,
+        "success": 0.784,
+        "n_escalated": 188
+      },
+      {
+        "rate": 1.0,
+        "success": 0.844,
+        "n_escalated": 250
+      }
+    ],
+    "oracle": [
+      {
+        "rate": 0.0,
+        "success": 0.448,
+        "n_escalated": 0
+      },
+      {
+        "rate": 0.048,
+        "success": 0.496,
+        "n_escalated": 12
+      },
+      {
+        "rate": 0.1,
+        "success": 0.548,
+        "n_escalated": 25
+      },
+      {
+        "rate": 0.152,
+        "success": 0.6,
+        "n_escalated": 38
+      },
+      {
+        "rate": 0.2,
+        "success": 0.648,
+        "n_escalated": 50
+      },
+      {
+        "rate": 0.3,
+        "success": 0.748,
+        "n_escalated": 75
+      },
+      {
+        "rate": 0.4,
+        "success": 0.848,
+        "n_escalated": 100
+      },
+      {
+        "rate": 0.5,
+        "success": 0.876,
+        "n_escalated": 125
+      },
+      {
+        "rate": 0.752,
+        "success": 0.848,
+        "n_escalated": 188
+      },
+      {
+        "rate": 1.0,
+        "success": 0.844,
+        "n_escalated": 250
+      }
+    ]
+  },
+  "expert_step_cost_ratio": 4.894674556213018
+}

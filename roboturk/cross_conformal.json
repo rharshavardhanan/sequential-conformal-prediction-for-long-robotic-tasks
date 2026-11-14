@@ -1,0 +1,105 @@
+{
+  "alpha": 0.1,
+  "K": 2,
+  "alpha_k": 0.05,
+  "n_partitions": 2000,
+  "note": "cross-conformal: q_hat averaged over random 79/80 partitions of the 159 held-out episodes. The single shipped partition put every outlier episode in calibration, giving coverage 1.000.",
+  "results": {
+    "max": {
+      "closed": {
+        "shipped_q": 2.200474262237549,
+        "cc_median_q": 1.0230920314788818,
+        "cc_q_iqr": [
+          0.9782305955886841,
+          1.2130520343780518
+        ],
+        "mean_coverage": 0.9511187500000001,
+        "p_coverage_one": 0.0625,
+        "eval_stat_max": 1.2130520343780518
+      },
+      "open": {
+        "shipped_q": 2.1862406730651855,
+        "cc_median_q": 1.5458457469940186,
+        "cc_q_iqr": [
+          1.2269518375396729,
+          1.9296293258666992
+        ],
+        "mean_coverage": 0.9498624999999999,
+        "p_coverage_one": 0.063,
+        "eval_stat_max": 1.1976218223571777
+      }
+    },
+    "p95": {
+      "closed": {
+        "shipped_q": 1.490856409072876,
+        "cc_median_q": 0.9232156276702881,
+        "cc_q_iqr": [
+          0.5985608100891113,
+          0.9732224345207214
+        ],
+        "mean_coverage": 0.95040625,
+        "p_coverage_one": 0.056,
+        "eval_stat_max": 0.9732224345207214
+      },
+      "open": {
+        "shipped_q": 1.540305256843567,
+        "cc_median_q": 1.0185885429382324,
+        "cc_q_iqr": [
+          0.6473627686500549,
+          1.0382757186889648
+        ],
+        "mean_coverage": 0.9509500000000001,
+        "p_coverage_one": 0.0625,
+        "eval_stat_max": 0.6473627686500549
+      }
+    },
+    "p90": {
+      "closed": {
+        "shipped_q": 1.3853718042373657,
+        "cc_median_q": 0.8699719309806824,
+        "cc_q_iqr": [
+          0.5182258486747742,
+          0.8979198932647705
+        ],
+        "mean_coverage": 0.95106875,
+        "p_coverage_one": 0.0685,
+        "eval_stat_max": 0.8979198932647705
+      },
+      "open": {
+        "shipped_q": 1.2618603706359863,
+        "cc_median_q": 0.45454463362693787,
+        "cc_q_iqr": [
+          0.36379119753837585,
+          0.8969092965126038
+        ],
+        "mean_coverage": 0.9507437500000001,
+        "p_coverage_one": 0.0605,
+        "eval_stat_max": 0.45454463362693787
+      }
+    },
+    "p75": {
+      "closed": {
+        "shipped_q": 1.1292953491210938,
+        "cc_median_q": 0.5087235569953918,
+        "cc_q_iqr": [
+          0.2530703544616699,
+          0.5666843056678772
+        ],
+        "mean_coverage": 0.9502375,
+        "p_coverage_one": 0.0545,
+        "eval_stat_max": 0.5666843056678772
+      },
+      "open": {
+        "shipped_q": 0.99350506067276,
+        "cc_median_q": 0.2500583529472351,
+        "cc_q_iqr": [
+          0.22214508056640625,
+          0.3255440592765808
+        ],
+        "mean_coverage": 0.9495875,
+        "p_coverage_one": 0.0625,
+        "eval_stat_max": 0.2919694781303406
+      }
+    }
+  }
+}

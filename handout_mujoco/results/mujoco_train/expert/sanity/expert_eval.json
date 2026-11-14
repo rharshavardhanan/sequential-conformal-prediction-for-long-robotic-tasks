@@ -1,0 +1,150 @@
+{
+  "summary": {
+    "label": "TQC expert (sanity)",
+    "n_episodes": 10,
+    "reach_success": 0.1,
+    "reach_ci95": [
+      0.0,
+      0.2859419264179007
+    ],
+    "push_success_unconditional": 0.0,
+    "push_success_given_reach": 0.0,
+    "complete_success": 0.0,
+    "complete_ci95": [
+      0.0,
+      0.0
+    ],
+    "mean_episode_len": 51.8,
+    "median_episode_len": 50.0,
+    "failure_phase_counts": {
+      "push": 1,
+      "reach": 9
+    },
+    "inference_ms_median": 0.07335449845413677,
+    "n_params": 74246,
+    "train_steps": 5000,
+    "train_seconds": 23.651857500000915,
+    "train_seed": 0,
+    "checkpoint": "best_model.zip",
+    "hyperparameters": {
+      "learning_rate": 0.0007,
+      "buffer_size": 300000,
+      "batch_size": 256,
+      "gamma": 0.98,
+      "tau": 0.005,
+      "learning_starts": 1000,
+      "train_freq": 1,
+      "gradient_steps": 1,
+      "policy_kwargs": {
+        "net_arch": "[256, 256]",
+        "n_critics": "2",
+        "use_sde": "False"
+      }
+    },
+    "eval_seed_base": 400000,
+    "train_seed_base": 0,
+    "device": "cpu"
+  },
+  "episodes": [
+    {
+      "seed": 400000,
+      "reach_success": false,
+      "push_success": false,
+      "success": false,
+      "steps": 50,
+      "final_phase": "reach",
+      "d_push": 0.08599024290377587,
+      "failure_phase": "reach"
+    },
+    {
+      "seed": 400001,
+      "reach_success": false,
+      "push_success": false,
+      "success": false,
+      "steps": 50,
+      "final_phase": "reach",
+      "d_push": 0.12475896522827061,
+      "failure_phase": "reach"
+    },
+    {
+      "seed": 400002,
+      "reach_success": false,
+      "push_success": false,
+      "success": false,
+      "steps": 50,
+      "final_phase": "reach",
+      "d_push": 0.17510989866025217,
+      "failure_phase": "reach"
+    },
+    {
+      "seed": 400003,
+      "reach_success": false,
+      "push_success": false,
+      "success": false,
+      "steps": 50,
+      "final_phase": "reach",
+      "d_push": 0.2966522370884783,
+      "failure_phase": "reach"
+    },
+    {
+      "seed": 400004,
+      "reach_success": false,
+      "push_success": false,
+      "success": false,
+      "steps": 50,
+      "final_phase": "reach",
+      "d_push": 0.06672635532845665,
+      "failure_phase": "reach"
+    },
+    {
+      "seed": 400005,
+      "reach_success": false,
+      "push_success": false,
+      "success": false,
+      "steps": 50,
+      "final_phase": "reach",
+      "d_push": 0.2490283741173339,
+      "failure_phase": "reach"
+    },
+    {
+      "seed": 400006,
+      "reach_success": false,
+      "push_success": false,
+      "success": false,
+      "steps": 50,
+      "final_phase": "reach",
+      "d_push": 0.06359841030899997,
+      "failure_phase": "reach"
+    },
+    {
+      "seed": 400007,
+      "reach_success": false,
+      "push_success": false,
+      "success": false,
+      "steps": 50,
+      "final_phase": "reach",
+      "d_push": 0.10033978030572574,
+      "failure_phase": "reach"
+    },
+    {
+      "seed": 400008,
+      "reach_success": true,
+      "push_success": false,
+      "success": false,
+      "steps": 68,
+      "final_phase": "push",
+      "d_push": 0.13862869095264446,
+      "failure_phase": "push"
+    },
+    {
+      "seed": 400009,
+      "reach_success": false,
+      "push_success": false,
+      "success": false,
+      "steps": 50,
+      "final_phase": "reach",
+      "d_push": 0.23429906844799248,
+      "failure_phase": "reach"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "ridge_on_goal_displacement_vector": {
+    "unmasked": 1.0,
+    "masked": 0.6762650609016418
+  },
+  "mlp_probe_on_d0": {
+    "unmasked": 0.9983773827552795,
+    "masked": 0.39471298456192017
+  },
+  "masked_columns": [
+    21,
+    22,
+    23
+  ],
+  "masked_columns_all_zero": true
+}

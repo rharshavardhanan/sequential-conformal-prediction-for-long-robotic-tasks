@@ -1,0 +1,66 @@
+{
+  "budgets": {
+    "1000": {
+      "train_mse": 0.019360415637493134,
+      "success": 22,
+      "n": 100,
+      "success_rate": 0.22,
+      "wilson95": [
+        0.15001282338296418,
+        0.3107035359276738
+      ],
+      "phaseA_success_rate": 0.92,
+      "path": "cheap_push_1000.pt"
+    },
+    "2000": {
+      "train_mse": 0.03291289135813713,
+      "success": 45,
+      "n": 100,
+      "success_rate": 0.45,
+      "wilson95": [
+        0.3561453790959721,
+        0.5475539707809276
+      ],
+      "phaseA_success_rate": 0.94,
+      "path": "cheap_push_2000.pt"
+    },
+    "5000": {
+      "train_mse": 0.06276331096887589,
+      "success": 54,
+      "n": 100,
+      "success_rate": 0.54,
+      "wilson95": [
+        0.4426486024827802,
+        0.6343919176157
+      ],
+      "phaseA_success_rate": 1.0,
+      "path": "cheap_push_5000.pt"
+    },
+    "10000": {
+      "train_mse": 0.08694392442703247,
+      "success": 71,
+      "n": 100,
+      "success_rate": 0.71,
+      "wilson95": [
+        0.6146110874554646,
+        0.7898516430615571
+      ],
+      "phaseA_success_rate": 0.99,
+      "path": "cheap_push_10000.pt"
+    }
+  },
+  "chosen_budget": 2000,
+  "rule_outcome": "smallest budget with success>=0.30 and gap>=0.20",
+  "composed_expert_rate": 0.89,
+  "expert_steps": 10027,
+  "expert_episodes": 505,
+  "cheap_params": 5891,
+  "expert_actor_params": {
+    "reach": 5382,
+    "push": 541190
+  },
+  "seeds": {
+    "distill": 140000,
+    "select": 150000
+  }
+}
